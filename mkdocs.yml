@@ -1,0 +1,81 @@
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
+
+# Información del proyecto
+site_name: Docmarx
+site_url: https://mydomain.org/mysite
+
+# Copyright
+
+# Configuración
+theme:
+  logo: assets/logo.png
+  name: material
+  language: es
+  features:
+    - content.code.copy
+    - content.code.select
+    - navigation.tracking
+    - navigation.tabs
+    #- navigation.tabs.sticky
+    #- navigation.sections
+    #- navigation.path
+    #- navigation.indexes
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - search.share
+    - toc.follow
+    #- toc.integrate
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Cambiar a modo claro
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Cambiar a modo oscuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Cambiar a preferencia del sistema
+  font:
+    text: Helvetica Neue
+    code: JetBrains Mono
+
+# Plugins
+plugins:
+  - search
+  #- typeset
+  #- privacy
+
+# Hooks
+
+# Configuración adicional
+extra_css:
+  - stylesheets/extra.css
+
+# Extensiones
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - admonition
+  - pymdownx.details
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      linenums: true
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+
+# Navegación
+nav:
+  - Inicio: index.md

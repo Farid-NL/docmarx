@@ -1,0 +1,7 @@
+/* Habilita ligatures en fuentes seleccionadas */
+.md-typeset code,
+.md-typeset kbd,
+.md-typeset pre {
+  font-feature-settings: "kern", "liga";
+  font-variant-ligatures: normal;
+}
