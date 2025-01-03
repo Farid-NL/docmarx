@@ -5,7 +5,7 @@
     Docmarx
 </h1>
 
-<h4 align="center">Documentación de vulnerabilidades mitigadas (reportadas por <a href="https://checkmarx.com/" target="_blank">Checkmarx</a>).</h4>
+<h4 align="center">Documentación de vulnerabilidades mitigadas reportadas por <a href="https://checkmarx.com/" target="_blank">Checkmarx</a>.</h4>
 
 <p align="center">
     <img alt="python-badge" src="https://img.shields.io/badge/python-3.12-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54">
@@ -15,8 +15,7 @@
 <p align="center">
     <a href="#configuración-uv">Configuración (uv)</a> •
     <a href="#configuración-pip">Configuración (pip)</a> •
-    <a href="#desarrollo">Desarrollo</a> •
-    <a href="#despliegue">Despliegue</a>
+    <a href="#desarrollo">Desarrollo</a>
 </p>
 
 ## Configuración (uv)
@@ -51,7 +50,6 @@
    ```
 
 ## Configuración (pip)
-
 > - El comando `python` o `python3` es usado en MacOS & Linux
 > - El comando `py` es usado en Windows
 
@@ -106,7 +104,7 @@ El script se encargará de crear el archivo correspondiente
      └── extra.css
 ```
 
-Además de añadir la referencia correspondiente a mkdocs.yml
+Además de añadir la referencia correspondiente en mkdocs.yml
 
 ```diff
  nav:
@@ -143,7 +141,7 @@ El script se encargará de remover el archivo correspondiente
      └── extra.css
 ```
 
-Además de añadir la referencia correspondiente a mkdocs.yml
+Además de remover la referencia correspondiente en mkdocs.yml
 
 ```diff
  nav:
@@ -152,5 +150,3 @@ Además de añadir la referencia correspondiente a mkdocs.yml
 -      - Client DOM Stored XSS: php/client-dom-stored-xss.md
 +  - PHP: []
 ```
-
-## Despliegue
