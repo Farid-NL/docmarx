@@ -7,8 +7,6 @@
 
 <h4 align="center">Documentación de vulnerabilidades mitigadas (reportadas por <a href="https://checkmarx.com/" target="_blank">Checkmarx</a>).</h4>
 
-[//]: # (<u><h4 align="center"><a href="#" target="_blank">Sitio web</a></h4></u>)
-
 <p align="center">
     <img alt="python-badge" src="https://img.shields.io/badge/python-3.12-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54">
     <img alt="uv-badge" src="https://img.shields.io/badge/uv-0.5.13-3670A0?style=for-the-badge&logo=uv&logoColor=ffdd54">
@@ -24,8 +22,11 @@
 ## Configuración (uv)
 
 1. Instala uv
-   - Windows
-   - MacOS & Linux
+   - Standalone Installer
+      - [Windows](https://docs.astral.sh/uv/getting-started/installation/#__tabbed_1_2)
+      - [MacOS & Linux](https://docs.astral.sh/uv/getting-started/installation/#__tabbed_1_1)
+   - [Winget (Windows)](https://docs.astral.sh/uv/getting-started/installation/#winget)
+   - [GitHub Releases (Windows, MacOS & Linux)](https://github.com/astral-sh/uv/releases)
 2. Utiliza la versión de python correcta: `>= 3.12`. Si es necesario instálala por medio del sig. comando:
    ```shell
    uv python install 3.12
