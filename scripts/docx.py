@@ -79,12 +79,14 @@ def add_vulnerability_file(
     language = language.lower()
     md_file = vulnerability_name.lower().replace(" ", "-") + ".md"
     md_file_dir = Path(__file__).resolve().parents[1] / "docs" / language
+    template_file = Path(__file__).resolve().parents[1] / "vulnerability.tmpl"
 
     md_path = md_file_dir / md_file
     if not md_path.exists():
         md_file_dir.mkdir(parents=True, exist_ok=True)
-        with open(md_path, "w+") as md_file:
-            md_file.write(f"---\nicon: material/language-{language}\n---\n")
+        with open(md_path, "w+") as md_file, open(template_file, "r") as template_file:
+            template_content = template_file.read()
+            md_file.write(template_content)
         return True, md_path
     else:
         return False
