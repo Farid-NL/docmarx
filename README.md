@@ -98,6 +98,8 @@
 4. Instala las dependencias.
    ```shell
    python -m pip install -r requirements.txt
+
+   # Si vas a crear algún archivo de python
    python -m pip install -r requirements-dev.txt
    ```
 
@@ -107,12 +109,12 @@ Se tiene disponible un script llamado **docx** que facilita la documentación de
 
 ### Agregar una vulnerabilidad
 
-- uv + venv activo
+- Como script instalado en el proyecto
    ```shell
    #docx add <lenguaje-de-programación> <vulnerabilidad>
    docx add PHP "Insufficient Sanitization for XSS"
    ```
-- pip + venv activo
+- Manual
    ```shell
    #python ./scripts/docx.py add <lenguaje-de-programación> <vulnerabilidad>
    python ./scripts/docx.py add PHP "Insufficient Sanitization for XSS"
@@ -142,13 +144,13 @@ Además de añadir la referencia correspondiente en mkdocs.yml
 
 ### Remover una vulnerabilidad
 
-- uv + venv activo
+- Como script instalado en el proyecto
    ```shell
    #docx remove <lenguaje-de-programación> <vulnerabilidad>
    docx remove PHP "Insufficient Sanitization for XSS"
    docx remove Python "Communication Over HTTP"
    ```
-- pip + venv activo
+- Manual
    ```shell
    #python ./scripts/docx.py remove <lenguaje-de-programación> <vulnerabilidad>
    python ./scripts/docx.py remove PHP "Insufficient Sanitization for XSS"
