@@ -105,7 +105,15 @@
 
 ## Desarrollo
 
-Se tiene disponible un script llamado **docx** que facilita la documentación de vulnerabilidades.
+### Previsualiza mientras modificas
+
+El servidor reconstruirá automáticamente el sitio al guardarlo. Inícialo con:
+
+```shell
+mkdocs serve
+```
+
+Luego dirígete a [localhost:8000](http://localhost:8000)
 
 ### Agregar una vulnerabilidad
 
