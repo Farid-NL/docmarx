@@ -1,8 +1,3 @@
-## Recomendación
-
-La aplicación debe finalizar cualquier sesión existente tras la autenticación del usuario y crear una nueva sesión para
-ese usuario.
-
 ## Solución
 
 Con base a lo reportado en la sección de _Destination_ del reporte de Checkmarx y su correspondiente fragmento de código,
