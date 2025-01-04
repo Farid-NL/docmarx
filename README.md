@@ -179,3 +179,13 @@ Además de remover la referencia correspondiente en mkdocs.yml
 -      - Client DOM Stored XSS: php/client-dom-stored-xss.md
 +  - PHP: []
 ```
+
+### Linting & Code formating
+
+```shell
+# Formatter
+ruff format
+
+# Linter
+ruff check --fix
+```
