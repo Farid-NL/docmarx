@@ -64,6 +64,7 @@ extra_css:
 #   • Content tabs
 #   • BetterEm
 markdown_extensions:
+  - tables
   - attr_list
   - md_in_html
   - admonition
@@ -77,6 +78,15 @@ markdown_extensions:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
+      extend_pygments_lang:
+        - name: php
+          lang: php
+          options:
+            startinline: true
+        - name: html+php
+          lang: php
+          options:
+            startinline: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
