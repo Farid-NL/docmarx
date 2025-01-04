@@ -94,3 +94,5 @@ markdown_extensions:
 # Navegación
 nav:
   - Inicio: index.md
+  - PHP:
+      - Session Fixation: php/session-fixation.md
