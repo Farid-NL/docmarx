@@ -21,11 +21,32 @@
 ## Configuración (uv)
 
 1. Instala uv
-   - Standalone Installer
-      - [Windows](https://docs.astral.sh/uv/getting-started/installation/#__tabbed_1_2)
-      - [MacOS & Linux](https://docs.astral.sh/uv/getting-started/installation/#__tabbed_1_1)
-   - [Winget (Windows)](https://docs.astral.sh/uv/getting-started/installation/#winget)
-   - [GitHub Releases (Windows, MacOS & Linux)](https://github.com/astral-sh/uv/releases)
+   - [Windows](https://docs.astral.sh/uv/getting-started/installation/#__tabbed_1_2)
+
+      ```shell
+      powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/0.5.13/install.ps1 | iex"
+
+      # Asegurate de tener "C:\Users\<tu_usuario>\.local\bin" en PATH
+      echo $env:Path
+
+      # De no tenerlo en PATH puedes agregarlo de la siguiente forma
+      $env:Path = "C:\Users\<tu_usuario>\.local\bin;$env:Path"
+      # Los cambios serán en $env:Path son temporales, funcionando solamente en la sesión activa
+      ```
+
+   - [macOS y Linux](https://docs.astral.sh/uv/getting-started/installation/#__tabbed_1_1)
+
+      ```shell
+      curl -LsSf https://astral.sh/uv/0.5.13/install.sh | sh
+
+      # Asegurate de tener "~/.local/bin" en PATH
+      echo $PATH
+
+      # De no tenerlo en PATH puede agregarlo de la siguiente forma
+      export PATH="~/.local/bin:$PATH"
+      # O puedes hacer los cambios permanentes en tu .bashrc o .zshrc
+      ```
+
 2. Utiliza la versión de python correcta: `>= 3.12`. Si es necesario instálala por medio del sig. comando:
    ```shell
    uv python install 3.12
