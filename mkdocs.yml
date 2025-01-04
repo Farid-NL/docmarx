@@ -13,7 +13,7 @@ theme:
   language: es
   features:
     - content.code.copy
-    - content.code.select
+    #- content.code.select
     - navigation.tracking
     - navigation.tabs
     #- navigation.tabs.sticky
@@ -58,6 +58,11 @@ extra_css:
   - stylesheets/extra.css
 
 # Extensiones
+#   • Code blocks
+#   • Annotations
+#   • Admonitions
+#   • Content tabs
+#   • BetterEm
 markdown_extensions:
   - attr_list
   - md_in_html
