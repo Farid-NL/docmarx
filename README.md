@@ -62,8 +62,11 @@
 
    # MacOS & Linux
    source .venv/bin/activate
-   # Windows
-   activate
+   # Windows CMD
+   .\.venv\Scripts\activate.bat
+   # Windows Powershell
+   Set-ExecutionPolicy RemoteSigned -Scope Process
+   .\.venv\Scripts\activate.ps1
    ```
 5. Instala las dependencias.
    ```shell
@@ -86,13 +89,16 @@
 
    # MacOS & Linux
    source .venv/bin/activate
-   # Windows
-   activate
+   # Windows CMD
+   .\.venv\Scripts\activate.bat
+   # Windows Powershell
+   Set-ExecutionPolicy RemoteSigned -Scope Process
+   .\.venv\Scripts\activate.ps1
    ```
 4. Instala las dependencias.
    ```shell
-   python -m pip -r requirements.txt
-   python -m pip -r requirements-dev.txt
+   python -m pip install -r requirements.txt
+   python -m pip install -r requirements-dev.txt
    ```
 
 ## Desarrollo
