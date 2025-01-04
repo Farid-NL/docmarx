@@ -128,7 +128,7 @@ Luego dirígete a [localhost:8000](http://localhost:8000)
    python ./scripts/docx.py add PHP "Insufficient Sanitization for XSS"
    ```
 
-El script se encargará de crear el archivo correspondiente
+El script se encargará de crear el archivo correspondiente con una plantilla para que documentes rápidamente
 
 ```diff
  docs/
@@ -156,13 +156,11 @@ Además de añadir la referencia correspondiente en mkdocs.yml
    ```shell
    #docx remove <lenguaje-de-programación> <vulnerabilidad>
    docx remove PHP "Insufficient Sanitization for XSS"
-   docx remove Python "Communication Over HTTP"
    ```
 - Manual
    ```shell
    #python ./scripts/docx.py remove <lenguaje-de-programación> <vulnerabilidad>
    python ./scripts/docx.py remove PHP "Insufficient Sanitization for XSS"
-   python ./scripts/docx.py remove Python "Communication Over HTTP"
    ```
 
 El script se encargará de remover el archivo correspondiente
