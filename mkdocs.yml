@@ -96,6 +96,7 @@ nav:
   - Inicio: index.md
   - PHP:
       - Insufficient Sanitization for XSS: php/insufficient-sanitization-for-xss.md
+      - Potential Clickjacking on Legacy Browsers: php/potential-clickjacking-on-legacy-browsers.md
       - Reflected XSS: php/reflected-xss.md
       - Session Fixation: php/session-fixation.md
       - Unchecked Input for Loop Condition: php/unchecked-input-for-loop-condition.md
