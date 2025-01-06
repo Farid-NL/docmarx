@@ -95,5 +95,6 @@ markdown_extensions:
 nav:
   - Inicio: index.md
   - PHP:
+      - Insufficient Sanitization for XSS: php/insufficient-sanitization-for-xss.md
       - Reflected XSS: php/reflected-xss.md
       - Session Fixation: php/session-fixation.md
