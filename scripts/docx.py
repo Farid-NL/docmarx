@@ -6,14 +6,22 @@ from pathlib import Path
 import click
 import yaml
 
+MKDOCS_YAML_PATH = Path(__file__).resolve().parents[1] / "mkdocs.yml"
 
+
+# Funciones auxiliares
 class IndentDumper(yaml.Dumper):
     def increase_indent(self, flow=False, indentless=False):
         return super(IndentDumper, self).increase_indent(flow, False)
 
 
-def sort_vulnerabilities(yaml_data: dict) -> str:
-    for item in yaml_data:
+def load_mkdocs_yaml():
+    with open(MKDOCS_YAML_PATH, "r") as yaml_file:
+        yaml_data = yaml.safe_load(yaml_file)
+    return yaml_data
+
+
+# Funciones
 def sort_vulnerabilities(nav_data: dict) -> str:
     for item in nav_data:
         for key in item:
@@ -29,11 +37,10 @@ def sort_vulnerabilities(nav_data: dict) -> str:
 
 
 def add_vulnerability(
-    yaml_path: Path, language: str, vulnerability_name: str
+    language: str, vulnerability_name: str
 ) -> tuple[bool, dict] | bool:
     # Carga mkdocs.yml
-    with open(yaml_path, "r") as yaml_file:
-        yaml_data = yaml.safe_load(yaml_file)
+    yaml_data = load_mkdocs_yaml()
 
     original_nav_element = copy.deepcopy(yaml_data["nav"])
     nav_element = yaml_data["nav"]
@@ -55,12 +62,9 @@ def add_vulnerability(
     return True, nav_element
 
 
-def remove_vulnerability(
-    yaml_path: Path, language: str, vulnerability_name: str
-) -> dict | bool:
+def remove_vulnerability(language: str, vulnerability_name: str) -> dict | bool:
     # Carga mkdocs.yml
-    with open(yaml_path, "r") as yaml_file:
-        yaml_data = yaml.safe_load(yaml_file)
+    yaml_data = load_mkdocs_yaml()
 
     nav_element = yaml_data["nav"]
 
@@ -107,8 +111,8 @@ def remove_vulnerability_file(language: str, vulnerability_name: str):
         return False
 
 
-def update_mkdocs_yaml(new_nav_data: str, yaml_path: Path):
-    with open(yaml_path, "r") as yaml_file:
+def update_mkdocs_nav(new_nav_data: str):
+    with open(MKDOCS_YAML_PATH, "r") as yaml_file:
         content = yaml_file.readlines()
 
     # Identifica la sección nav de mkdocs.yaml
@@ -128,7 +132,7 @@ def update_mkdocs_yaml(new_nav_data: str, yaml_path: Path):
     content = content[:nav_section_start] + [new_nav_data] + content[nav_section_end:]
 
     # Actualiza el archivo mkdocs.yaml
-    with open(yaml_path, "w", encoding="utf-8") as yaml_file:
+    with open(MKDOCS_YAML_PATH, "w", encoding="utf-8") as yaml_file:
         yaml_file.writelines(content)
 
 
@@ -141,14 +145,10 @@ def cli():
 @click.argument("language")
 @click.argument("vulnerability_name")
 def add(language: str, vulnerability_name: str):
-    # Ubica el archivo mkdocs.yml dentro del proyecto
-    project_root = Path(__file__).resolve().parents[1]
-    mkdocs_yml = project_root / "mkdocs.yml"
-
-    is_nav_modified = add_vulnerability(mkdocs_yml, language, vulnerability_name)
+    is_nav_modified = add_vulnerability(language, vulnerability_name)
     if is_nav_modified:
         nav_sorted = sort_vulnerabilities(is_nav_modified[1])
-        update_mkdocs_yaml(nav_sorted, mkdocs_yml)
+        update_mkdocs_nav(nav_sorted)
         print("Se agregó la vulnerabilidad al archivo mkdocs.yml")
     else:
         print("No se agregó la vulnerabilidad al archivo mkdocs.yml")
@@ -164,14 +164,10 @@ def add(language: str, vulnerability_name: str):
 @click.argument("language")
 @click.argument("vulnerability_name")
 def remove(language: str, vulnerability_name: str):
-    # Ubica el archivo mkdocs.yml dentro del proyecto
-    project_root = Path(__file__).resolve().parents[1]
-    mkdocs_yml = project_root / "mkdocs.yml"
-
-    is_nav_modified = remove_vulnerability(mkdocs_yml, language, vulnerability_name)
+    is_nav_modified = remove_vulnerability(language, vulnerability_name)
     if is_nav_modified:
         nav_sorted = sort_vulnerabilities(is_nav_modified)
-        update_mkdocs_yaml(nav_sorted, mkdocs_yml)
+        update_mkdocs_nav(nav_sorted)
         print("Se removió la vulnerabilidad del archivo mkdocs.yml")
     else:
         print("No se removió la vulnerabilidad del archivo mkdocs.yml")
@@ -185,16 +181,10 @@ def remove(language: str, vulnerability_name: str):
 
 @cli.command()
 def sort():
-    # Ubica el archivo mkdocs.yml dentro del proyecto
-    project_root = Path(__file__).resolve().parents[1]
-    mkdocs_yml = project_root / "mkdocs.yml"
-
-    # Carga mkdocs.yml
-    with open(mkdocs_yml, "r") as yaml_file:
-        yaml_data = yaml.safe_load(yaml_file)
+    yaml_data = load_mkdocs_yaml()
 
     nav_sorted = sort_vulnerabilities(yaml_data["nav"])
-    update_mkdocs_yaml(nav_sorted, mkdocs_yml)
+    update_mkdocs_nav(nav_sorted)
 
 
 if __name__ == "__main__":
