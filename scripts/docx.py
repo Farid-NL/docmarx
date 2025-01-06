@@ -181,5 +181,19 @@ def remove(language: str, vulnerability_name: str):
         print("No se removió un archivo asociado a la vulnerabilidad")
 
 
+@cli.command()
+def sort():
+    # Ubica el archivo mkdocs.yml dentro del proyecto
+    project_root = Path(__file__).resolve().parents[1]
+    mkdocs_yml = project_root / "mkdocs.yml"
+
+    # Carga mkdocs.yml
+    with open(mkdocs_yml, "r") as yaml_file:
+        yaml_data = yaml.safe_load(yaml_file)
+
+    nav_sorted = sort_vulnerabilities(yaml_data["nav"])
+    update_mkdocs_yaml(nav_sorted, mkdocs_yml)
+
+
 if __name__ == "__main__":
     cli()
