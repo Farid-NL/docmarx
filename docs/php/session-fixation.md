@@ -8,7 +8,7 @@ agrega `#!php session_destroy()` en donde corresponda.
 Comparando las ocurrencias del archivo `ClubdeProteccion/index.php`, queda claro que la
 función `#!php errorhandler($e);` es la raíz del problema, por lo que la solución se añade a esta.
 
-=== "Path 6"
+=== "Path A"
     !!! info "Destination"
         **File:** `ClubdeProteccion/index.php`
         <br>
@@ -22,7 +22,7 @@ función `#!php errorhandler($e);` es la raíz del problema, por lo que la soluc
         if (isset($jresponse["error"])) errorhandler($jresponse["error_description"]);
         ```
 
-=== "Path"
+=== "Path B"
     !!! info "Destination"
         **File:** `ClubdeProteccion/index.php`
         <br>
