@@ -98,3 +98,4 @@ nav:
       - Insufficient Sanitization for XSS: php/insufficient-sanitization-for-xss.md
       - Reflected XSS: php/reflected-xss.md
       - Session Fixation: php/session-fixation.md
+      - Unchecked Input for Loop Condition: php/unchecked-input-for-loop-condition.md
