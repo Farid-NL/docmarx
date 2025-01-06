@@ -95,4 +95,5 @@ markdown_extensions:
 nav:
   - Inicio: index.md
   - PHP:
+      - Reflected XSS: php/reflected-xss.md
       - Session Fixation: php/session-fixation.md
