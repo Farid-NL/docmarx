@@ -14,12 +14,14 @@ class IndentDumper(yaml.Dumper):
 
 def sort_vulnerabilities(yaml_data: dict) -> str:
     for item in yaml_data:
+def sort_vulnerabilities(nav_data: dict) -> str:
+    for item in nav_data:
         for key in item:
             if key != "Inicio":
                 item[key] = sorted(item[key], key=lambda x: list(x.keys())[0])
 
     sorted_yaml = yaml.dump(
-        yaml_data, Dumper=IndentDumper, allow_unicode=True, sort_keys=False
+        nav_data, Dumper=IndentDumper, allow_unicode=True, sort_keys=False
     )
     sorted_yaml = textwrap.indent(sorted_yaml, " " * 2)
 
