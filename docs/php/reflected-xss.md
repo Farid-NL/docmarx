@@ -10,7 +10,7 @@ Agrega envuelve el uso de estos arreglos con la función `#!php htmlspecialchars
 
 ### Ejemplo
 
-=== "Path 4"
+=== "Path"
     !!! info "Destination"
         **File:** `ClubdeProteccion/index.php`
         <br>
@@ -18,8 +18,9 @@ Agrega envuelve el uso de estos arreglos con la función `#!php htmlspecialchars
         <br>
         **Object:** contenido_archivo
 
-    !!! info "Code snippet"
-        ```php
+        **Code snippet:**
+        <br>
+        ```php linenums="519"
         $_SESSION['token'] = $_POST['token'];
         ```
 
@@ -29,6 +30,7 @@ Agrega envuelve el uso de estos arreglos con la función `#!php htmlspecialchars
     ```php
     $_SESSION['token'] = $_POST['token'];
     ```
+
 === "Solucionado"
     ```php hl_lines="1"
     $_SESSION['token'] = htmlspecialchars($_POST['token'], ENT_QUOTES, 'UTF-8');

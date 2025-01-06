@@ -16,12 +16,13 @@ función `#!php errorhandler($e);` es la raíz del problema, por lo que la soluc
         <br>
         **Object:** ExprStmt
 
-    !!! info "Code snippet"
-        ```php
+        **Code snippet:**
+        <br>
+        ```php linenums="225"
         if (isset($jresponse["error"])) errorhandler($jresponse["error_description"]);
         ```
 
-=== "Path 7"
+=== "Path"
     !!! info "Destination"
         **File:** `ClubdeProteccion/index.php`
         <br>
@@ -29,8 +30,9 @@ función `#!php errorhandler($e);` es la raíz del problema, por lo que la soluc
         <br>
         **Object:** ExprStmt
 
-    !!! info "Code snippet"
-        ```php
+        **Code snippet:**
+        <br>
+        ```php linenums="220"
         errorhandler($e);
         ```
 
@@ -43,6 +45,7 @@ función `#!php errorhandler($e);` es la raíz del problema, por lo que la soluc
         exit(0);
     }
     ```
+
 === "Solucionado"
     ```html+php hl_lines="3"
     function errorhandler($input) {
