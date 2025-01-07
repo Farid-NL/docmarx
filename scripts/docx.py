@@ -229,7 +229,7 @@ def remove(language: str, vulnerability: str):
 
 @cli.command()
 def sort():
-    """Sort the vulnerabilities presented in the nav section of mkdocs.yml."""
+    """Sort the vulnerabilities in mkdocs.yml."""
     yaml_data = load_mkdocs_yaml()
 
     nav_sorted = sort_vulnerabilities(yaml_data["nav"])
