@@ -186,23 +186,36 @@ def add(language: str, vulnerability: str, alta: bool, media: bool, baja: bool):
     """
     num_flags_activated = alta + media + baja
     if num_flags_activated not in (0, 1):
-        print("Solo una bandera puede estar activa a la vez.")
+        click.echo("Solo una opción puede estar activa a la vez.", err=True)
         exit(1)
 
     is_nav_modified = add_vulnerability(language, vulnerability)
     if is_nav_modified:
         nav_sorted = sort_vulnerabilities(is_nav_modified)
         update_mkdocs_nav(nav_sorted)
-        print("Se agregó la vulnerabilidad al archivo mkdocs.yml")
+
+        click.echo(
+            f"• {click.style(vulnerability, fg="blue")}"
+            + f" - {click.style("Agregado", fg="green")}"
+        )
     else:
-        print("No se agregó la vulnerabilidad al archivo mkdocs.yml")
+        click.echo(
+            f"• {click.style(vulnerability, fg="blue")}"
+            + f" - {click.style("No agregado", fg="red")}"
+        )
 
     severity = "Alta" if alta else "Media" if media else "Baja" if baja else None
     is_file_created = add_vulnerability_file(language, vulnerability, severity)
     if is_file_created:
-        print(f"Se creó el archivo asociado en '{is_file_created}'")
+        click.echo(
+            f"• {click.style(is_file_created, fg="blue")}"
+            + f" - {click.style("Creado", fg="green")}"
+        )
     else:
-        print("No se creo un archivo asociado a la vulnerabilidad")
+        click.echo(
+            f"• {click.style("Archivo", fg="blue")}"
+            + f" - {click.style("No creado", fg="red")}"
+        )
 
 
 @cli.command()
@@ -217,15 +230,28 @@ def remove(language: str, vulnerability: str):
     if is_nav_modified:
         nav_sorted = sort_vulnerabilities(is_nav_modified)
         update_mkdocs_nav(nav_sorted)
-        print("Se removió la vulnerabilidad del archivo mkdocs.yml")
+
+        click.echo(
+            f"• {click.style(vulnerability, fg="blue")}"
+            + f" - {click.style("Eliminado", fg="green")}"
+        )
     else:
-        print("No se removió la vulnerabilidad del archivo mkdocs.yml")
+        click.echo(
+            f"• {click.style(vulnerability, fg="blue")}"
+            + f" - {click.style("No eliminado", fg="red")}"
+        )
 
     is_file_removed = remove_vulnerability_file(language, vulnerability)
     if is_file_removed:
-        print(f"Se removió el archivo asociado '{is_file_removed}'")
+        click.echo(
+            f"• {click.style(is_file_removed, fg="blue")}"
+            + f" - {click.style("Eliminado", fg="green")}"
+        )
     else:
-        print("No se removió un archivo asociado a la vulnerabilidad")
+        click.echo(
+            f"• {click.style("Archivo", fg="blue")}"
+            + f" - {click.style("No eliminado", fg="red")}"
+        )
 
 
 @cli.command()
