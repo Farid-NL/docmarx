@@ -44,9 +44,17 @@ theme:
   font:
     text: Helvetica Neue
     code: JetBrains Mono
+  icon:
+    tag:
+      php: simple/php
+      c: simple/c
+      javascript: simple/javascript
+      python: simple/python
+      angular: simple/angular
 
 # Plugins
 plugins:
+  - tags
   - search
   #- typeset
   #- privacy
@@ -54,6 +62,14 @@ plugins:
 # Hooks
 
 # Configuración adicional
+extra:
+  tags:
+    PHP: php
+    C: c
+    Javascript: javascript
+    Python: python
+    Angular: angular
+
 extra_css:
   - stylesheets/extra.css
 
