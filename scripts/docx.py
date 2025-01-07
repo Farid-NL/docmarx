@@ -114,16 +114,15 @@ def add_vulnerability_file(
 
 
 def remove_vulnerability_file(language: str, vulnerability_name: str):
-    language = language.lower()
-    md_file = vulnerability_name.lower().replace(" ", "-") + ".md"
-    md_file_dir = Path(__file__).resolve().parents[1] / "docs" / language
+    vuln_file_name = vulnerability_name.lower().replace(" ", "-") + ".md"
+    vuln_file_dir = Path(__file__).resolve().parents[1] / "docs" / language.lower()
 
-    md_path = md_file_dir / md_file
-    if md_path.exists():
-        md_path.unlink()
-        return True, md_path
-    else:
+    vuln_path = vuln_file_dir / vuln_file_name
+    if not vuln_path.exists():
         return False
+
+    vuln_path.unlink()
+    return vuln_path
 
 
 def update_mkdocs_nav(new_nav_data: str):
@@ -221,7 +220,7 @@ def remove(language: str, vulnerability: str):
 
     is_file_removed = remove_vulnerability_file(language, vulnerability)
     if is_file_removed:
-        print(f"Se removió el archivo asociado '{is_file_removed[1]}'")
+        print(f"Se removió el archivo asociado '{is_file_removed}'")
     else:
         print("No se removió un archivo asociado a la vulnerabilidad")
 
