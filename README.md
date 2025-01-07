@@ -31,7 +31,7 @@
 
       # De no tenerlo en PATH puedes agregarlo de la siguiente forma
       $env:Path = "C:\Users\<tu_usuario>\.local\bin;$env:Path"
-      # Los cambios serán en $env:Path son temporales, funcionando solamente en la sesión activa
+      # Los cambios en $env:Path son temporales, funcionando solamente en la sesión activa
       ```
 
    - [macOS y Linux](https://docs.astral.sh/uv/getting-started/installation/#__tabbed_1_1)
@@ -115,7 +115,7 @@ mkdocs serve
 
 Luego dirígete a [localhost:8000](http://localhost:8000)
 
-### Agregar una vulnerabilidad
+### Agrega una vulnerabilidad
 
 **Documentación del comando**
 
@@ -129,25 +129,27 @@ SYNOPSIS
        docx add [-b | --baja] <language> <vulnerability>
 
 DESCRIPTION
-       Crea un archivo markdown en la ruta 'docs/<language>' nombrado según la vulnerabilidad en kebab-case, además de
-       agregar el nombre de la vulnerabilidad así como la ruta del archivo recién creado a la sección nav de mkdocs.yml.
+       Crea un archivo markdown en 'docs/<language>' nombrado según la vulnerabilidad en
+       kebab-case, además de agregar el nombre de la vulnerabilidad así como la ruta del
+       archivo recién creado a la sección nav de mkdocs.yml.
 
-       Dicho archivo se crea con un contenido por defecto basado en la plantilla vulnerability.tmpl.
+       Dicho archivo se crea con basado en la plantilla vulnerability.tmpl.
 
-       Sólo se puede utilizar una opción a la vez o ninguna, en cuyo caso se dejará la etiqueta de severidad comentada.
+       Sólo se puede utilizar una opción a la vez o ninguna, en cuyo caso se dejará la
+       etiqueta de severidad comentada.
 
 OPTIONS
        -a, --alta
-           Establece la severidad de la vulnerabilidad como es alta a través de una etiqueta en la cabecera del archivo
-           markdown.
+           Establece la severidad de la vulnerabilidad como alta a través de una etiqueta
+           en la cabecera del archivo markdown.
 
        -m, --media
-           Establece la severidad de la vulnerabilidad como es media a través de una etiqueta en la cabecera del archivo
-           markdown.
+           Establece la severidad de la vulnerabilidad como media a través de una etiqueta
+           en la cabecera del archivo markdown.
 
        -b, --baja
-           Establece la severidad de la vulnerabilidad como es baja a través de una etiqueta en la cabecera del archivo
-           markdown.
+           Establece la severidad de la vulnerabilidad como baja a través de una etiqueta
+           en la cabecera del archivo markdown.
 ```
 
 **Ejemplo**
@@ -178,7 +180,7 @@ Además de añadir la referencia correspondiente en mkdocs.yml
 +      - Insufficient Sanitization for XSS: php/insufficient-sanitization-for-xss.md
 ```
 
-### Remover una vulnerabilidad
+### Remueve una vulnerabilidad
 
 **Documentación del comando**
 
@@ -190,10 +192,11 @@ SYNOPSIS
        docx remove <language> <vulnerability>
 
 DESCRIPTION
-       Remueve un archivo markdown en la ruta 'docs/<language>' nombrado según la vulnerabilidad en kebab-case, además
-       de remover el nombre de la vulnerabilidad así como la ruta del archivo a la sección nav de mkdocs.yml.
+       Remueve el archivo correspondiente a la vulnerabilidad, además de remover la entrada
+       correspondiente a la vulnerabilidad en la sección nav de mkdocs.yml.
 
-       <language> y <vulnerability> deben coincidir exactamente con su correspondiente en la sección nav de mkdocs.yml.
+       Los argumentos <language> y <vulnerability> deben coincidir exactamente con su
+       correspondiente entrada en la sección nav de mkdocs.yml.
 ```
 
 **Ejemplo**
@@ -225,7 +228,7 @@ Además de remover la referencia correspondiente en mkdocs.yml
 +  - PHP: []
 ```
 
-### Ordenar vulnerabilidades
+### Ordena vulnerabilidades
 
 ```text
 NAME
@@ -245,6 +248,9 @@ docx sort
 ```
 
 ### Linting & Code formating
+
+Si vas a trabajar con archivos python, ya sea al crear o editar un script o un hook, asegúrate de usar los siguientes
+comandos durante el desarrollo y al final de cada commit. Esto con la finalidad de mantener el code style consistente.
 
 ```shell
 # Formatter
