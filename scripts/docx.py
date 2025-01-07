@@ -9,12 +9,6 @@ import yaml
 MKDOCS_YAML_PATH = Path(__file__).resolve().parents[1] / "mkdocs.yml"
 
 
-# Funciones auxiliares
-class IndentDumper(yaml.Dumper):
-    def increase_indent(self, flow=False, indentless=False):
-        return super(IndentDumper, self).increase_indent(flow, False)
-
-
 def load_mkdocs_yaml():
     with open(MKDOCS_YAML_PATH, "r") as yaml_file:
         yaml_data = yaml.safe_load(yaml_file)
@@ -22,18 +16,33 @@ def load_mkdocs_yaml():
 
 
 # Funciones
-def sort_vulnerabilities(nav_data: dict) -> str:
-    for item in nav_data:
-        for key in item:
-            if key != "Inicio":
-                item[key] = sorted(item[key], key=lambda x: list(x.keys())[0])
+def sort_vulnerabilities(nav_element: dict) -> str:
+    class IndentDumper(yaml.Dumper):
+        """Clase auxiliar para incrementar la indentación"""
 
-    sorted_yaml = yaml.dump(
-        nav_data, Dumper=IndentDumper, allow_unicode=True, sort_keys=False
+        def increase_indent(self, flow=False, indentless=False):
+            return super(IndentDumper, self).increase_indent(flow, False)
+
+    def get_vulnerability_name(vulnerability: dict) -> str:
+        return list(vulnerability.keys())[0]
+
+    for section in nav_element:
+        for section_name in section:
+            if section_name != "Inicio":
+                # Ordena las vulnerabilidades alfabéticamente
+                section[section_name] = sorted(
+                    section[section_name],
+                    key=get_vulnerability_name,
+                )
+
+    # Incrementa la indentación del arreglo de vulnerabilidades
+    sorted_nav_yaml = yaml.dump(
+        nav_element, Dumper=IndentDumper, allow_unicode=True, sort_keys=False
     )
-    sorted_yaml = textwrap.indent(sorted_yaml, " " * 2)
+    # Sin esto, el elemento nav de mkdocs.yaml quedaría con una indentación incorrecta
+    sorted_nav_yaml = textwrap.indent(sorted_nav_yaml, " " * 2)
 
-    return f"nav:\n{sorted_yaml}"
+    return f"nav:\n{sorted_nav_yaml}"
 
 
 def add_vulnerability(
