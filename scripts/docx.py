@@ -73,17 +73,18 @@ def add_vulnerability(language: str, vulnerability_name: str) -> dict | bool:
 
 
 def remove_vulnerability(language: str, vulnerability_name: str) -> dict | bool:
-    # Carga mkdocs.yml
-    yaml_data = load_mkdocs_yaml()
+    def get_name_of(element: dict) -> str:
+        return list(element.keys())[0]
 
+    yaml_data = load_mkdocs_yaml()
     nav_element = yaml_data["nav"]
 
-    for item in nav_element:
-        if language in item:
-            for index, current_vulnerability in enumerate(item[language]):
-                vulnerability_key = next(iter(current_vulnerability))
-                if vulnerability_key == vulnerability_name:
-                    item[language].pop(index)
+    for section in nav_element:
+        if language in section:
+            for index, vulnerability in enumerate(section[language]):
+                vulnerability_identifier = get_name_of(vulnerability)
+                if vulnerability_identifier == vulnerability_name:
+                    section[language].pop(index)
             return nav_element
 
     return False
