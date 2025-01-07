@@ -82,16 +82,16 @@ def remove_vulnerability(language: str, vulnerability_name: str) -> dict | bool:
 def add_vulnerability_file(
     language: str, vulnerability_name: str
 ) -> tuple[bool, Path] | bool:
-    language = language.lower()
+    language_lowercase = language.lower()
     md_file = vulnerability_name.lower().replace(" ", "-") + ".md"
-    md_file_dir = Path(__file__).resolve().parents[1] / "docs" / language
+    md_file_dir = Path(__file__).resolve().parents[1] / "docs" / language_lowercase
     template_file = Path(__file__).resolve().parents[1] / "vulnerability.tmpl"
 
     md_path = md_file_dir / md_file
     if not md_path.exists():
         md_file_dir.mkdir(parents=True, exist_ok=True)
         with open(md_path, "w+") as md_file, open(template_file, "r") as template_file:
-            template_content = template_file.read()
+            template_content = template_file.read().replace("{{{language}}}", language)
             md_file.write(template_content)
         return True, md_path
     else:
