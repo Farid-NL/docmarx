@@ -1,4 +1,3 @@
-import copy
 import re
 import textwrap
 from pathlib import Path
@@ -45,30 +44,32 @@ def sort_vulnerabilities(nav_element: dict) -> str:
     return f"nav:\n{sorted_nav_yaml}"
 
 
-def add_vulnerability(
-    language: str, vulnerability_name: str
-) -> tuple[bool, dict] | bool:
-    # Carga mkdocs.yml
+def add_vulnerability(language: str, vulnerability_name: str) -> dict | bool:
+    def get_name_of(element: dict) -> str:
+        return list(element.keys())[0]
+
     yaml_data = load_mkdocs_yaml()
 
-    original_nav_element = copy.deepcopy(yaml_data["nav"])
     nav_element = yaml_data["nav"]
     md_file = f"{language.lower()}/{vulnerability_name.lower().replace(" ", "-")}.md"
 
-    for item in nav_element:
-        language_key = next(iter(item))
-        if language_key.lower() == language.lower():
-            if not any(
-                vulnerability_name.lower() == next(iter(current_vulnerability)).lower()
-                for current_vulnerability in item[language_key]
-            ):
-                item[language].append({vulnerability_name: md_file})
+    for section in nav_element:
+        language_key = get_name_of(section)
 
-            return False if nav_element == original_nav_element else (True, nav_element)
+        if language_key.lower() == language.lower():
+            existing_vulnerabilities = [
+                get_name_of(vulnerability).lower()
+                for vulnerability in section[language_key]
+            ]
+
+            if vulnerability_name.lower() not in existing_vulnerabilities:
+                section[language].append({vulnerability_name: md_file})
+                return nav_element
+
+            return False
 
     nav_element.append({language: [{vulnerability_name: md_file}]})
-
-    return True, nav_element
+    return nav_element
 
 
 def remove_vulnerability(language: str, vulnerability_name: str) -> dict | bool:
@@ -187,7 +188,7 @@ def add(language: str, vulnerability: str, alta: bool, media: bool, baja: bool):
 
     is_nav_modified = add_vulnerability(language, vulnerability)
     if is_nav_modified:
-        nav_sorted = sort_vulnerabilities(is_nav_modified[1])
+        nav_sorted = sort_vulnerabilities(is_nav_modified)
         update_mkdocs_nav(nav_sorted)
         print("Se agregó la vulnerabilidad al archivo mkdocs.yml")
     else:
