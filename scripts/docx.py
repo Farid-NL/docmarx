@@ -202,32 +202,21 @@ def add(language: str, vulnerability: str, alta: bool, media: bool, baja: bool):
         exit(1)
 
     is_nav_modified = add_vulnerability(language, vulnerability)
+    click.secho(f"{vulnerability}:", fg="blue")
     if is_nav_modified:
         nav_sorted = sort_vulnerabilities(is_nav_modified)
         update_mkdocs_nav(nav_sorted)
 
-        click.echo(
-            f"• {click.style(vulnerability, fg="blue")}"
-            + f" - {click.style("Agregado", fg="green")}"
-        )
+        click.echo(f"  {click.style("✓", fg="green")} mkdocs.yml actualizado")
     else:
-        click.echo(
-            f"• {click.style(vulnerability, fg="blue")}"
-            + f" - {click.style("No agregado", fg="red")}"
-        )
+        click.echo(f"  {click.style("x", fg="red")} mkdocs.yml sin cambios")
 
     severity = "Alta" if alta else "Media" if media else "Baja" if baja else None
     is_file_created = add_vulnerability_file(language, vulnerability, severity)
     if is_file_created:
-        click.echo(
-            f"• {click.style(is_file_created, fg="blue")}"
-            + f" - {click.style("Creado", fg="green")}"
-        )
+        click.echo(f"  {click.style("✓", fg="green")} archivo creado")
     else:
-        click.echo(
-            f"• {click.style("Archivo", fg="blue")}"
-            + f" - {click.style("No creado", fg="red")}"
-        )
+        click.echo(f"  {click.style("x", fg="red")} archivo no creado")
 
 
 @cli.command()
@@ -239,31 +228,20 @@ def remove(language: str, vulnerability: str):
     Note: VULNERABILITY_NAME must be exactly as presented in mkdocs.yml
     """
     is_nav_modified = remove_vulnerability(language, vulnerability)
+    click.secho(f"{vulnerability}:", fg="blue")
     if is_nav_modified:
         nav_sorted = sort_vulnerabilities(is_nav_modified)
         update_mkdocs_nav(nav_sorted)
 
-        click.echo(
-            f"• {click.style(vulnerability, fg="blue")}"
-            + f" - {click.style("Eliminado", fg="green")}"
-        )
+        click.echo(f"  {click.style("✓", fg="green")} mkdocs.yml actualizado")
     else:
-        click.echo(
-            f"• {click.style(vulnerability, fg="blue")}"
-            + f" - {click.style("No eliminado", fg="red")}"
-        )
+        click.echo(f"  {click.style("x", fg="red")} mkdocs.yml sin cambios")
 
     is_file_removed = remove_vulnerability_file(language, vulnerability)
     if is_file_removed:
-        click.echo(
-            f"• {click.style(is_file_removed, fg="blue")}"
-            + f" - {click.style("Eliminado", fg="green")}"
-        )
+        click.echo(f"  {click.style("✓", fg="green")} archivo removido")
     else:
-        click.echo(
-            f"• {click.style("Archivo", fg="blue")}"
-            + f" - {click.style("No eliminado", fg="red")}"
-        )
+        click.echo(f"  {click.style("x", fg="red")} archivo no removido")
 
 
 @cli.command()
