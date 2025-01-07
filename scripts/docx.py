@@ -80,19 +80,23 @@ def remove_vulnerability(language: str, vulnerability_name: str) -> dict | bool:
 
 
 def add_vulnerability_file(
-    language: str, vulnerability_name: str
+    language: str, vulnerability_name: str, severity: str
 ) -> tuple[bool, Path] | bool:
     language_lowercase = language.lower()
     md_file = vulnerability_name.lower().replace(" ", "-") + ".md"
     md_file_dir = Path(__file__).resolve().parents[1] / "docs" / language_lowercase
-    template_file = Path(__file__).resolve().parents[1] / "vulnerability.tmpl"
+    template_path = Path(__file__).resolve().parents[1] / "vulnerability.tmpl"
 
     md_path = md_file_dir / md_file
     if not md_path.exists():
         md_file_dir.mkdir(parents=True, exist_ok=True)
-        with open(md_path, "w+") as md_file, open(template_file, "r") as template_file:
-            template_content = template_file.read().replace("{{{language}}}", language)
-            md_file.write(template_content)
+        with open(md_path, "w+") as md_file, open(template_path, "r") as template_file:
+            tmpl_content = template_file.read().replace("{{{language}}}", language)
+            if severity:
+                tmpl_content = tmpl_content.replace("{{{severity}}}", f"- {severity}")
+            else:
+                tmpl_content = tmpl_content.replace("{{{severity}}}", "#- Baja")
+            md_file.write(tmpl_content)
         return True, md_path
     else:
         return False
@@ -144,7 +148,15 @@ def cli():
 @cli.command()
 @click.argument("language")
 @click.argument("vulnerability_name")
-def add(language: str, vulnerability_name: str):
+@click.option("--alta", "-a", is_flag=True, show_default=True, default=False)
+@click.option("--media", "-m", is_flag=True, show_default=True, default=False)
+@click.option("--baja", "-b", is_flag=True, show_default=True, default=False)
+def add(language: str, vulnerability_name: str, alta: bool, media: bool, baja: bool):
+    num_flags_activated = alta + media + baja
+    if num_flags_activated not in (0, 1):
+        print("Solo una bandera puede estar activa a la vez.")
+        exit(1)
+
     is_nav_modified = add_vulnerability(language, vulnerability_name)
     if is_nav_modified:
         nav_sorted = sort_vulnerabilities(is_nav_modified[1])
@@ -153,7 +165,8 @@ def add(language: str, vulnerability_name: str):
     else:
         print("No se agregó la vulnerabilidad al archivo mkdocs.yml")
 
-    is_file_created = add_vulnerability_file(language, vulnerability_name)
+    severity = "Alta" if alta else "Media" if media else "Baja" if baja else None
+    is_file_created = add_vulnerability_file(language, vulnerability_name, severity)
     if is_file_created:
         print(f"Se creó el archivo asociado en '{is_file_created[1]}'")
     else:

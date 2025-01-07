@@ -51,6 +51,9 @@ theme:
       javascript: simple/javascript
       python: simple/python
       angular: simple/angular
+      vul-alta: material/alert
+      vul-media: material/alert
+      vul-baja: material/alert
 
 # Plugins
 plugins:
@@ -69,6 +72,9 @@ extra:
     Javascript: javascript
     Python: python
     Angular: angular
+    Alta: vul-alta
+    Media: vul-media
+    Baja: vul-baja
 
 extra_css:
   - stylesheets/extra.css
