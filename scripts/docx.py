@@ -92,25 +92,25 @@ def remove_vulnerability(language: str, vulnerability_name: str) -> dict | bool:
 
 def add_vulnerability_file(
     language: str, vulnerability_name: str, severity: str
-) -> tuple[bool, Path] | bool:
-    language_lowercase = language.lower()
-    md_file = vulnerability_name.lower().replace(" ", "-") + ".md"
-    md_file_dir = Path(__file__).resolve().parents[1] / "docs" / language_lowercase
-    template_path = Path(__file__).resolve().parents[1] / "vulnerability.tmpl"
+) -> Path | bool:
+    vuln_file_name = vulnerability_name.lower().replace(" ", "-") + ".md"
+    vuln_file_dir = Path(__file__).resolve().parents[1] / "docs" / language.lower()
+    tmpl_path = Path(__file__).resolve().parents[1] / "vulnerability.tmpl"
 
-    md_path = md_file_dir / md_file
-    if not md_path.exists():
-        md_file_dir.mkdir(parents=True, exist_ok=True)
-        with open(md_path, "w+") as md_file, open(template_path, "r") as template_file:
-            tmpl_content = template_file.read().replace("{{{language}}}", language)
-            if severity:
-                tmpl_content = tmpl_content.replace("{{{severity}}}", f"- {severity}")
-            else:
-                tmpl_content = tmpl_content.replace("{{{severity}}}", "#- Baja")
-            md_file.write(tmpl_content)
-        return True, md_path
-    else:
+    vuln_path = vuln_file_dir / vuln_file_name
+    if vuln_path.exists():
         return False
+
+    vuln_file_dir.mkdir(parents=True, exist_ok=True)
+    with open(tmpl_path, "r") as tmpl_file, open(vuln_path, "w+") as vuln_file:
+        tmpl_content = tmpl_file.read().replace("{{{language}}}", language)
+        if severity:
+            tmpl_content = tmpl_content.replace("{{{severity}}}", f"- {severity}")
+        else:
+            tmpl_content = tmpl_content.replace("{{{severity}}}", "#- Baja")
+        vuln_file.write(tmpl_content)
+
+    return vuln_path
 
 
 def remove_vulnerability_file(language: str, vulnerability_name: str):
@@ -198,7 +198,7 @@ def add(language: str, vulnerability: str, alta: bool, media: bool, baja: bool):
     severity = "Alta" if alta else "Media" if media else "Baja" if baja else None
     is_file_created = add_vulnerability_file(language, vulnerability, severity)
     if is_file_created:
-        print(f"Se creó el archivo asociado en '{is_file_created[1]}'")
+        print(f"Se creó el archivo asociado en '{is_file_created}'")
     else:
         print("No se creo un archivo asociado a la vulnerabilidad")
 
