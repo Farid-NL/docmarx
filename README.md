@@ -117,16 +117,44 @@ Luego dirígete a [localhost:8000](http://localhost:8000)
 
 ### Agregar una vulnerabilidad
 
-- Como script instalado en el proyecto
-   ```shell
-   #docx add <lenguaje-de-programación> <vulnerabilidad>
-   docx add PHP "Insufficient Sanitization for XSS"
-   ```
-- Manual
-   ```shell
-   #python ./scripts/docx.py add <lenguaje-de-programación> <vulnerabilidad>
-   python ./scripts/docx.py add PHP "Insufficient Sanitization for XSS"
-   ```
+**Documentación del comando**
+
+```text
+NAME
+       docx-add - Añade una nueva vulnerabilidad a documentar
+
+SYNOPSIS
+       docx add [-a | --alta] <language> <vulnerability>
+       docx add [-m | --media] <language> <vulnerability>
+       docx add [-b | --baja] <language> <vulnerability>
+
+DESCRIPTION
+       Crea un archivo markdown en la ruta 'docs/<language>' nombrado según la vulnerabilidad en kebab-case, además de
+       agregar el nombre de la vulnerabilidad así como la ruta del archivo recién creado a la sección nav de mkdocs.yml.
+
+       Dicho archivo se crea con un contenido por defecto basado en la plantilla vulnerability.tmpl.
+
+       Sólo se puede utilizar una opción a la vez o ninguna, en cuyo caso se dejará la etiqueta de severidad comentada.
+
+OPTIONS
+       -a, --alta
+           Establece la severidad de la vulnerabilidad como es alta a través de una etiqueta en la cabecera del archivo
+           markdown.
+
+       -m, --media
+           Establece la severidad de la vulnerabilidad como es media a través de una etiqueta en la cabecera del archivo
+           markdown.
+
+       -b, --baja
+           Establece la severidad de la vulnerabilidad como es baja a través de una etiqueta en la cabecera del archivo
+           markdown.
+```
+
+**Ejemplo**
+
+ ```shell
+ docx add PHP "Insufficient Sanitization for XSS" --baja
+ ```
 
 El script se encargará de crear el archivo correspondiente con una plantilla para que documentes rápidamente
 
@@ -152,16 +180,27 @@ Además de añadir la referencia correspondiente en mkdocs.yml
 
 ### Remover una vulnerabilidad
 
-- Como script instalado en el proyecto
-   ```shell
-   #docx remove <lenguaje-de-programación> <vulnerabilidad>
-   docx remove PHP "Insufficient Sanitization for XSS"
-   ```
-- Manual
-   ```shell
-   #python ./scripts/docx.py remove <lenguaje-de-programación> <vulnerabilidad>
-   python ./scripts/docx.py remove PHP "Insufficient Sanitization for XSS"
-   ```
+**Documentación del comando**
+
+```text
+NAME
+       docx-remove - Remueve una nueva vulnerabilidad
+
+SYNOPSIS
+       docx remove <language> <vulnerability>
+
+DESCRIPTION
+       Remueve un archivo markdown en la ruta 'docs/<language>' nombrado según la vulnerabilidad en kebab-case, además
+       de remover el nombre de la vulnerabilidad así como la ruta del archivo a la sección nav de mkdocs.yml.
+
+       <language> y <vulnerability> deben coincidir exactamente con su correspondiente en la sección nav de mkdocs.yml.
+```
+
+**Ejemplo**
+
+```shell
+docx remove PHP "Insufficient Sanitization for XSS"
+```
 
 El script se encargará de remover el archivo correspondiente
 
@@ -184,6 +223,25 @@ Además de remover la referencia correspondiente en mkdocs.yml
 -  - PHP:
 -      - Client DOM Stored XSS: php/client-dom-stored-xss.md
 +  - PHP: []
+```
+
+### Ordenar vulnerabilidades
+
+```text
+NAME
+       docx-sort - Ordena alfabéticamente las vulnerabilidades
+
+SYNOPSIS
+       docx sort
+
+DESCRIPTION
+       Ordena alfabéticamente las vulnerabilidades y reescribe la sección nav de mkdocs.yml.
+```
+
+**Ejemplo**
+
+```shell
+docx sort
 ```
 
 ### Linting & Code formating

@@ -147,17 +147,36 @@ def cli():
 
 @cli.command()
 @click.argument("language")
-@click.argument("vulnerability_name")
-@click.option("--alta", "-a", is_flag=True, show_default=True, default=False)
-@click.option("--media", "-m", is_flag=True, show_default=True, default=False)
-@click.option("--baja", "-b", is_flag=True, show_default=True, default=False)
-def add(language: str, vulnerability_name: str, alta: bool, media: bool, baja: bool):
+@click.argument("vulnerability")
+@click.option(
+    "--alta",
+    "-a",
+    is_flag=True,
+    help="Set severity to high",
+)
+@click.option(
+    "--media",
+    "-m",
+    is_flag=True,
+    help="Set severity to medium",
+)
+@click.option(
+    "--baja",
+    "-b",
+    is_flag=True,
+    help="Set severity to low",
+)
+def add(language: str, vulnerability: str, alta: bool, media: bool, baja: bool):
+    """Add a new vulnerability to be documented.
+
+    Note: Only one option can be used at a time or none at all.
+    """
     num_flags_activated = alta + media + baja
     if num_flags_activated not in (0, 1):
         print("Solo una bandera puede estar activa a la vez.")
         exit(1)
 
-    is_nav_modified = add_vulnerability(language, vulnerability_name)
+    is_nav_modified = add_vulnerability(language, vulnerability)
     if is_nav_modified:
         nav_sorted = sort_vulnerabilities(is_nav_modified[1])
         update_mkdocs_nav(nav_sorted)
@@ -166,7 +185,7 @@ def add(language: str, vulnerability_name: str, alta: bool, media: bool, baja: b
         print("No se agregó la vulnerabilidad al archivo mkdocs.yml")
 
     severity = "Alta" if alta else "Media" if media else "Baja" if baja else None
-    is_file_created = add_vulnerability_file(language, vulnerability_name, severity)
+    is_file_created = add_vulnerability_file(language, vulnerability, severity)
     if is_file_created:
         print(f"Se creó el archivo asociado en '{is_file_created[1]}'")
     else:
@@ -175,9 +194,13 @@ def add(language: str, vulnerability_name: str, alta: bool, media: bool, baja: b
 
 @cli.command()
 @click.argument("language")
-@click.argument("vulnerability_name")
-def remove(language: str, vulnerability_name: str):
-    is_nav_modified = remove_vulnerability(language, vulnerability_name)
+@click.argument("vulnerability")
+def remove(language: str, vulnerability: str):
+    """Remove a vulnerability.
+
+    Note: VULNERABILITY_NAME must be exactly as presented in mkdocs.yml
+    """
+    is_nav_modified = remove_vulnerability(language, vulnerability)
     if is_nav_modified:
         nav_sorted = sort_vulnerabilities(is_nav_modified)
         update_mkdocs_nav(nav_sorted)
@@ -185,7 +208,7 @@ def remove(language: str, vulnerability_name: str):
     else:
         print("No se removió la vulnerabilidad del archivo mkdocs.yml")
 
-    is_file_removed = remove_vulnerability_file(language, vulnerability_name)
+    is_file_removed = remove_vulnerability_file(language, vulnerability)
     if is_file_removed:
         print(f"Se removió el archivo asociado '{is_file_removed[1]}'")
     else:
@@ -194,6 +217,7 @@ def remove(language: str, vulnerability_name: str):
 
 @cli.command()
 def sort():
+    """Sort the vulnerabilities presented in the nav section of mkdocs.yml."""
     yaml_data = load_mkdocs_yaml()
 
     nav_sorted = sort_vulnerabilities(yaml_data["nav"])
