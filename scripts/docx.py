@@ -5,7 +5,8 @@ from pathlib import Path
 import click
 import yaml
 
-MKDOCS_YAML_PATH = Path(__file__).resolve().parents[1] / "mkdocs.yml"
+ROOT_PATH = Path(__file__).resolve().parents[1]
+MKDOCS_YAML_PATH = ROOT_PATH / "mkdocs.yml"
 
 
 def load_mkdocs_yaml():
@@ -94,8 +95,8 @@ def add_vulnerability_file(
     language: str, vulnerability_name: str, severity: str
 ) -> Path | bool:
     vuln_file_name = vulnerability_name.lower().replace(" ", "-") + ".md"
-    vuln_file_dir = Path(__file__).resolve().parents[1] / "docs" / language.lower()
-    tmpl_path = Path(__file__).resolve().parents[1] / "vulnerability.tmpl"
+    vuln_file_dir = ROOT_PATH / "docs" / language.lower()
+    tmpl_path = ROOT_PATH / "vulnerability.tmpl"
 
     vuln_path = vuln_file_dir / vuln_file_name
     if vuln_path.exists():
@@ -110,19 +111,19 @@ def add_vulnerability_file(
             tmpl_content = tmpl_content.replace("{{{severity}}}", "#- Baja")
         vuln_file.write(tmpl_content)
 
-    return vuln_path
+    return vuln_path.relative_to(ROOT_PATH)
 
 
 def remove_vulnerability_file(language: str, vulnerability_name: str):
     vuln_file_name = vulnerability_name.lower().replace(" ", "-") + ".md"
-    vuln_file_dir = Path(__file__).resolve().parents[1] / "docs" / language.lower()
+    vuln_file_dir = ROOT_PATH / "docs" / language.lower()
 
     vuln_path = vuln_file_dir / vuln_file_name
     if not vuln_path.exists():
         return False
 
     vuln_path.unlink()
-    return vuln_path
+    return vuln_path.relative_to(ROOT_PATH)
 
 
 def update_mkdocs_nav(nav_data: str):
