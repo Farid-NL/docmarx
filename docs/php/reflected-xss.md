@@ -1,3 +1,9 @@
+---
+tags:
+  - PHP
+  - Alta
+---
+
 ## Solución
 
 Suele suceder con los arreglos asociativos `$_POST` y `$_GET` al no ser sanitizados correctamente.

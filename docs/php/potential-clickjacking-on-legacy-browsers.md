@@ -1,3 +1,9 @@
+---
+tags:
+  - PHP
+  - Baja
+---
+
 ## Solución
 
 Agrega el [fragmento de código](#código) arriba del todo del archivo, afuera de la etiqueta `<?php`.

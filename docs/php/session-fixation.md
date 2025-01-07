@@ -1,3 +1,9 @@
+---
+tags:
+  - PHP
+  - Media
+---
+
 ## Solución
 
 Con base a lo reportado en la sección de _Destination_ del reporte de Checkmarx y su correspondiente fragmento de código,

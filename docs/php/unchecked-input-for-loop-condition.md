@@ -1,3 +1,9 @@
+---
+tags:
+  - PHP
+  - Media
+---
+
 ## Solución
 
 Cambia el ciclo `#!php for` por `#!php foreach`
