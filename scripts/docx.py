@@ -127,30 +127,29 @@ def remove_vulnerability_file(language: str, vulnerability_name: str):
 
 
 def update_mkdocs_nav(nav_data: str):
+    def find_nav_section(nav_content):
+        """Localiza el número de línea inicial y final de la sección 'nav' en mkdocs.yml"""
+        start = None
+        end = None
+
+        for line_number, line in enumerate(nav_content):
+            if re.match(r"^nav:", line):
+                start = line_number
+            elif start is not None and re.match(r"^\S", line):
+                end = line_number
+                break
+
+        # Maneja el caso en el que nav sea el último nodo en mkdocs.yml
+        return start, end or len(nav_content)
+
     with open(MKDOCS_YAML_PATH, "r") as mkdocs_file:
         content = mkdocs_file.readlines()
 
-    # Identifica la colección nav en mkdocs.yaml
-    nav_section_start = None
-    nav_section_end = None
-    for line_number, line in enumerate(content):
-        # Inicio de la colección
-        if re.match(r"^nav:", line):
-            nav_section_start = line_number
-        # Fin de la colección
-        elif nav_section_start is not None and re.match(r"^\S", line):
-            nav_section_end = line_number
-            break
+    nav_start, nav_end = find_nav_section(content)
+    updated_content = content[:nav_start] + [nav_data] + content[nav_end:]
 
-    # Maneja el caso en el que nav sea el último nodo en mkdocs.yml
-    nav_section_end = nav_section_end or len(content)
-
-    # Actualiza la colección nav en mkdocs.yaml
-    content = content[:nav_section_start] + [nav_data] + content[nav_section_end:]
-
-    # Escribe los cambios realizados mkdocs.yaml
     with open(MKDOCS_YAML_PATH, "w") as mkdocs_file:
-        mkdocs_file.writelines(content)
+        mkdocs_file.writelines(updated_content)
 
 
 @click.group()
