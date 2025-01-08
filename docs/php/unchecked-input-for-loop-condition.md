@@ -8,24 +8,6 @@ tags:
 
 Cambia el ciclo `#!php for` por `#!php foreach`
 
-### Ejemplo
-
-=== "Path"
-    !!! info "Destination"
-        **File:** `ClubdeProteccion/ajax/proc/proc_validaracceso.php`
-        <br>
-        **Line:** 113
-        <br>
-        **Object:** response
-
-        **Code snippet:**
-        <br>
-        ```php linenums="113"
-        for($i = 0;$i < sizeof($response->perfil);$i++ ) {
-        ```
-
-### Código
-
 === "Original"
     ```php
     for ($i = 0; $i < sizeof($response->perfil); $i++) {

@@ -6,45 +6,13 @@ tags:
 
 ## Solución
 
-Suele suceder con los arreglos asociativos `$_POST` y `$_GET` al no ser sanitizados correctamente.
+Suele suceder con las variables superglobales, tales como `$_POST` y `$_GET`, al no ser sanitizadas correctamente.
+Pero también puede ocurrir con alguna otra variable.
 
-Agrega envuelve el uso de estos arreglos con la función `#!php htmlspecialchars()` con los siguientes parámetros:
+Envuelve el fragmento de código afectado con la función `#!php htmlspecialchars()` con los siguientes parámetros:
 
 - `#!php ENT_QUOTES`
 - `#!php 'UTF-8'`
-
-### Ejemplo
-
-Ubica
-
-=== "Path"
-    !!! info "Source"
-        **File:** `ClubdeProteccion/index.php`
-        <br>
-        **Line:** 333
-        <br>
-        **Object:** strValjson
-
-        **Code snippet:**
-        <br>
-        ```php linenums="333"
-        $strValue .= fgets($strValjson,4096);
-        ```
-
-    !!! info "Destination"
-        **File:** `ClubdeProteccion/index.php`
-        <br>
-        **Line:** 519
-        <br>
-        **Object:** contenido_archivo
-
-        **Code snippet:**
-        <br>
-        ```php linenums="519"
-        echo $contenido_archivo;
-        ```
-
-### Código
 
 === "Original"
     ```php

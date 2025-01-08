@@ -6,31 +6,12 @@ tags:
 
 ## Solución
 
-Suele suceder con los arreglos asociativos `$_POST` y `$_GET` al no ser sanitizados correctamente.
+Suele suceder con las variables superglobales, tales como `$_POST` y `$_GET`, al no ser sanitizadas correctamente.
 
-Agrega envuelve el uso de estos arreglos con la función `#!php htmlspecialchars()` con los siguientes parámetros:
+Envuelve el uso de estas variables con la función `#!php htmlspecialchars()` con los siguientes parámetros:
 
 - `#!php ENT_QUOTES`
 - `#!php 'UTF-8'`
-
-
-### Ejemplo
-
-=== "Path"
-    !!! info "Destination"
-        **File:** `ClubdeProteccion/index.php`
-        <br>
-        **Line:** 519
-        <br>
-        **Object:** contenido_archivo
-
-        **Code snippet:**
-        <br>
-        ```php linenums="519"
-        $_SESSION['token'] = $_POST['token'];
-        ```
-
-### Código
 
 === "Original"
     ```php

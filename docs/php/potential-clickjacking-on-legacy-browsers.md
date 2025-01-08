@@ -6,29 +6,7 @@ tags:
 
 ## Solución
 
-Agrega el [fragmento de código](#código) arriba del todo del archivo, afuera de la etiqueta `<?php`.
-
-O en algún lado entre el código HTML
-
-### Ejemplo
-
-Explicación del ejemplo
-
-=== "Path"
-    !!! info "Destination"
-        **File:** `ClubdeProteccion/ajax/proc/proc_excelmovimientocovid.php`
-        <br>
-        **Line:** 1
-        <br>
-        **Object:** CxJSNS_7aed654e
-
-        **Code snippet:**
-        <br>
-        ```text linenums="1"
-        <?php
-        ```
-
-### Código
+Agrega el [fragmento de código](#__tabbed_1_2) arriba del todo del archivo, afuera de la etiqueta `<?php`.
 
 === "Original"
     ```js+php
