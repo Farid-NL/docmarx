@@ -13,6 +13,7 @@ theme:
   language: es
   features:
     - content.code.copy
+    - content.tooltips
     #- content.code.select
     - navigation.tracking
     - navigation.tabs
@@ -86,6 +87,7 @@ extra_css:
 #   • Content tabs
 #   • BetterEm
 markdown_extensions:
+  - abbr
   - tables
   - attr_list
   - md_in_html
@@ -125,4 +127,5 @@ nav:
       - Potential Clickjacking on Legacy Browsers: php/potential-clickjacking-on-legacy-browsers.md
       - Reflected XSS: php/reflected-xss.md
       - Session Fixation: php/session-fixation.md
+      - Trust Boundary Violation in Session Variables: php/trust-boundary-violation-in-session-variables.md
       - Unchecked Input for Loop Condition: php/unchecked-input-for-loop-condition.md
