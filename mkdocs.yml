@@ -120,6 +120,7 @@ markdown_extensions:
 nav:
   - Inicio: index.md
   - PHP:
+      - Improper Exception Handling: php/improper-exception-handling.md
       - Insufficient Sanitization for XSS: php/insufficient-sanitization-for-xss.md
       - Potential Clickjacking on Legacy Browsers: php/potential-clickjacking-on-legacy-browsers.md
       - Reflected XSS: php/reflected-xss.md
