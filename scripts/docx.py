@@ -10,7 +10,13 @@ MKDOCS_YAML_PATH = ROOT_PATH / "mkdocs.yml"
 
 
 def load_mkdocs_yaml():
+    def constructor_ignore_python_objects(loader, prefix, node):
+        return node.tag.replace("tag:yaml.org,2002:", "!!")
+
     with open(MKDOCS_YAML_PATH, "r") as yaml_file:
+        yaml.SafeLoader.add_multi_constructor(
+            "tag:yaml.org,2002:python/name:", constructor_ignore_python_objects
+        )
         yaml_data = yaml.safe_load(yaml_file)
     return yaml_data
 
