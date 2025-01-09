@@ -14,9 +14,7 @@ def load_mkdocs_yaml():
         return node.tag.replace("tag:yaml.org,2002:", "!!")
 
     with open(MKDOCS_YAML_PATH, "r") as yaml_file:
-        yaml.SafeLoader.add_multi_constructor(
-            "tag:yaml.org,2002:python/name:", constructor_ignore_python_objects
-        )
+        yaml.SafeLoader.add_multi_constructor("tag:yaml.org,2002:python/name:", constructor_ignore_python_objects)
         yaml_data = yaml.safe_load(yaml_file)
     return yaml_data
 
@@ -48,9 +46,7 @@ def sort_vulnerabilities(nav_element: dict) -> str:
                 )
 
     # Incrementa la indentación del arreglo de vulnerabilidades
-    sorted_nav_yaml = yaml.dump(
-        nav_element, Dumper=IndentDumper, allow_unicode=True, sort_keys=False
-    )
+    sorted_nav_yaml = yaml.dump(nav_element, Dumper=IndentDumper, allow_unicode=True, sort_keys=False)
     # Sin esto, el elemento nav de mkdocs.yaml quedaría con una indentación incorrecta
     sorted_nav_yaml = textwrap.indent(sorted_nav_yaml, " " * 2)
 
@@ -73,10 +69,7 @@ def add_vulnerability(language: str, vulnerability_name: str) -> dict | bool:
         language_key = get_name_of(section)
 
         if language_key.lower() == language.lower():
-            existing_vulnerabilities = [
-                get_name_of(vulnerability).lower()
-                for vulnerability in section[language_key]
-            ]
+            existing_vulnerabilities = [get_name_of(vulnerability).lower() for vulnerability in section[language_key]]
 
             if vulnerability_name.lower() not in existing_vulnerabilities:
                 section[language].append({vulnerability_name: md_file})
@@ -109,9 +102,7 @@ def remove_vulnerability(language: str, vulnerability_name: str) -> dict | bool:
     return False
 
 
-def add_vulnerability_file(
-    language: str, vulnerability_name: str, severity: str
-) -> Path | bool:
+def add_vulnerability_file(language: str, vulnerability_name: str, severity: str) -> Path | bool:
     vuln_file_name = vulnerability_name.lower().replace(" ", "-") + ".md"
     vuln_file_dir = ROOT_PATH / "docs" / language.lower()
     tmpl_path = ROOT_PATH / "vulnerability.tmpl"
@@ -178,24 +169,9 @@ def cli():
 @cli.command()
 @click.argument("language")
 @click.argument("vulnerability")
-@click.option(
-    "--alta",
-    "-a",
-    is_flag=True,
-    help="Set severity to high",
-)
-@click.option(
-    "--media",
-    "-m",
-    is_flag=True,
-    help="Set severity to medium",
-)
-@click.option(
-    "--baja",
-    "-b",
-    is_flag=True,
-    help="Set severity to low",
-)
+@click.option("--alta", "-a", is_flag=True, help="Set severity to high")
+@click.option("--media", "-m", is_flag=True, help="Set severity to medium")
+@click.option("--baja", "-b", is_flag=True, help="Set severity to low")
 def add(language: str, vulnerability: str, alta: bool, media: bool, baja: bool):
     """Add a new vulnerability to be documented.
 
