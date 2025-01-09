@@ -21,7 +21,8 @@
 ## Configuración (uv)
 
 1. Instala uv
-   - [Windows](https://docs.astral.sh/uv/getting-started/installation/#__tabbed_1_2)
+
+    - [Windows](https://docs.astral.sh/uv/getting-started/installation/#__tabbed_1_2)
 
       ```shell
       powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/0.5.13/install.ps1 | iex"
@@ -34,7 +35,7 @@
       # Los cambios en $env:Path son temporales, funcionando solamente en la sesión activa
       ```
 
-   - [macOS y Linux](https://docs.astral.sh/uv/getting-started/installation/#__tabbed_1_1)
+    - [macOS y Linux](https://docs.astral.sh/uv/getting-started/installation/#__tabbed_1_1)
 
       ```shell
       curl -LsSf https://astral.sh/uv/0.5.13/install.sh | sh
@@ -74,6 +75,7 @@
    ```
 
 ## Configuración (pip)
+
 > - El comando `python` o `python3` es usado en MacOS & Linux
 > - El comando `py` es usado en Windows
 

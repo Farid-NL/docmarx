@@ -1,7 +1,6 @@
 ---
 tags:
   - PHP
-  # Severidad: Alta, Media, Baja
   - Baja
 ---
 
