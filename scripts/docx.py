@@ -28,7 +28,6 @@ def is_nav_in_yaml(yaml_data):
         return False
 
 
-# Funciones
 def sort_vulnerabilities(nav_element: dict) -> str:
     class IndentDumper(yaml.Dumper):
         """Clase auxiliar para incrementar la indentación"""
@@ -127,7 +126,7 @@ def add_vulnerability_file(
         if severity:
             tmpl_content = tmpl_content.replace("{{{severity}}}", f"- {severity}")
         else:
-            tmpl_content = tmpl_content.replace("{{{severity}}}", "#- Baja")
+            tmpl_content = tmpl_content.replace("{{{severity}}}", "#- Alta|Media|Baja")
         vuln_file.write(tmpl_content)
 
     return vuln_path.relative_to(ROOT_PATH)
