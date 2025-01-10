@@ -128,6 +128,7 @@ nav:
   - Inicio: index.md
   - PHP:
       - Client Privacy Violation: php/client-privacy-violation.md
+      - Error Messages Misconfiguration: php/error-messages-misconfiguration.md
       - Improper Exception Handling: php/improper-exception-handling.md
       - Insufficient Sanitization for XSS: php/insufficient-sanitization-for-xss.md
       - Potential Clickjacking on Legacy Browsers: php/potential-clickjacking-on-legacy-browsers.md
