@@ -49,6 +49,7 @@ theme:
     tag:
       php: simple/php
       c: simple/c
+      cpp: simple/cplusplus
       javascript: simple/javascript
       python: simple/python
       angular: simple/angular
@@ -70,6 +71,7 @@ extra:
   tags:
     PHP: php
     C: c
+    C++: cpp
     Javascript: javascript
     Python: python
     Angular: angular
@@ -133,5 +135,5 @@ nav:
       - Session Fixation: php/session-fixation.md
       - Trust Boundary Violation in Session Variables: php/trust-boundary-violation-in-session-variables.md
       - Unchecked Input for Loop Condition: php/unchecked-input-for-loop-condition.md
-  - C:
-      - Dangerous Functions: c/dangerous-functions.md
+  - C++:
+      - Dangerous Functions: cpp/dangerous-functions.md
