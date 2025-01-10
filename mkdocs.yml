@@ -133,3 +133,5 @@ nav:
       - Session Fixation: php/session-fixation.md
       - Trust Boundary Violation in Session Variables: php/trust-boundary-violation-in-session-variables.md
       - Unchecked Input for Loop Condition: php/unchecked-input-for-loop-condition.md
+  - C:
+      - Dangerous Functions: c/dangerous-functions.md
