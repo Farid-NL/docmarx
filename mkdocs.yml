@@ -137,3 +137,4 @@ nav:
       - Unchecked Input for Loop Condition: php/unchecked-input-for-loop-condition.md
   - C++:
       - Dangerous Functions: cpp/dangerous-functions.md
+      - Unchecked Return Value: cpp/unchecked-return-value.md
