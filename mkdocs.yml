@@ -4,6 +4,10 @@
 site_name: Docmarx
 site_url: https://mydomain.org/mysite
 
+# Información del repositorio
+repo_url: https://github.com/farid-nl/docmarx
+repo_name: farid-nl/docmarx
+
 # Copyright
 
 # Configuración
