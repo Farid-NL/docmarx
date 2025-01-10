@@ -14,11 +14,13 @@ Envuelve el uso de estas variables con la función `#!php htmlspecialchars()` co
 - `#!php 'UTF-8'`
 
 === "Original"
+
     ```php
     $_SESSION['token'] = $_POST['token'];
     ```
 
 === "Solucionado"
+
     ```php hl_lines="1"
     $_SESSION['token'] = htmlspecialchars($_POST['token'], ENT_QUOTES, 'UTF-8');
     ```

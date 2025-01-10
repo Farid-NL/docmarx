@@ -10,6 +10,7 @@ Con base a lo reportado en la sección de _Destination_ del reporte de Checkmarx
 agrega `#!php session_destroy()` en donde corresponda.
 
 === "Original"
+
     ```html+php
     function errorhandler($input) {
         echo "<script language='javascript'>window.location.href='$urlIntranet';</script>";
@@ -18,6 +19,7 @@ agrega `#!php session_destroy()` en donde corresponda.
     ```
 
 === "Solucionado"
+
     ```html+php hl_lines="3"
     function errorhandler($input) {
         echo "<script language='javascript'>window.location.href='$urlIntranet';</script>";

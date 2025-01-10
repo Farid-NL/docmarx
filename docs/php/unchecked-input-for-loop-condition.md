@@ -9,6 +9,7 @@ tags:
 Cambia el ciclo `#!php for` por `#!php foreach`
 
 === "Original"
+
     ```php
     for ($i = 0; $i < sizeof($response->perfil); $i++) {
         if ($response->perfil[$i]->idu_area != $buffer) {
@@ -26,6 +27,7 @@ Cambia el ciclo `#!php for` por `#!php foreach`
     ```
 
 === "Solucionado"
+
     ```{ .php .annotate hl_lines="1" }
     foreach ($response->perfil as $perfilItem) { // (1)!
         if ($perfilItem->idu_area != $buffer) {

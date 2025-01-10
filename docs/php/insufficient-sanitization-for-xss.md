@@ -15,6 +15,7 @@ Envuelve el fragmento de código afectado con la función `#!php htmlspecialchar
 - `#!php 'UTF-8'`
 
 === "Original"
+
     ```php
     if ($strValjson = fopen("$strValjson", "r")) {
         $strValue = '';
@@ -26,6 +27,7 @@ Envuelve el fragmento de código afectado con la función `#!php htmlspecialchar
     ```
 
 === "Solucionado"
+
     ```php hl_lines="8"
     if ($strValjson = fopen("$strValjson", "r")) {
         $strValue = '';

@@ -12,11 +12,13 @@ envuelve la sentencia en un bloque `#!php try-catch`.
 ### `json_encode`
 
 === "Original"
+
     ```php
     echo json_encode($respuesta);
     ```
 
 === "Solucionado"
+
     ```php hl_lines="1 3-5"
     try {
         echo json_encode($respuesta, JSON_THROW_ON_ERROR);
@@ -32,11 +34,13 @@ envuelve la sentencia en un bloque `#!php try-catch`.
 #### `PHP >= 8.0`
 
 === "Original"
+
     ```php
     echo json_encode($respuesta);
     ```
 
 === "Solucionado"
+
     ```{ .php .annotate hl_lines="1 3-5" }
     try {
         echo json_encode($respuesta, flags: JSON_THROW_ON_ERROR); // (1)!
@@ -50,11 +54,13 @@ envuelve la sentencia en un bloque `#!php try-catch`.
 #### `PHP < 8.0`
 
 === "Original"
+
     ```php
     echo json_encode($respuesta);
     ```
 
 === "Solucionado"
+
     ```{ .php .annotate hl_lines="1 3-5" }
     try {
         echo json_encode($respuesta, null, 512, JSON_THROW_ON_ERROR); // (1)!

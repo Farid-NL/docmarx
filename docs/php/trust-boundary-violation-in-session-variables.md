@@ -17,6 +17,7 @@ Envuelve el uso de estas variables con alguna de las siguientes funciones, y su 
 ### `filter_input`
 
 !!! warning
+
     El contenido de la superglobal que se está filtrando, es el contenido original «en bruto» proporcionado
     por el SAPI, antes de cualquier modificación de la superglobal por parte del usuario.
 
@@ -26,11 +27,13 @@ Envuelve el uso de estas variables con alguna de las siguientes funciones, y su 
 
 
 === "Original"
+
     ```php
     $nSeleccion = isset($_GET['nSeleccion']) ? $_GET['nSeleccion'] : 0;
     ```
 
 === "Solucionado"
+
     ```{ .php .annotate hl_lines="1" }
     /*(1)!*/$nSeleccion = filter_input(INPUT_GET, 'nSeleccion', FILTER_SANITIZE_NUMBER_INT) ?: 0;
     ```
@@ -40,12 +43,15 @@ Envuelve el uso de estas variables con alguna de las siguientes funciones, y su 
 ---
 
 ### `filter_var` :material-star:{ title="Recomendado" }
+
 === "Original"
+
     ```php
     $_SESSION[$Session]['INDEX_ORIGEN'] = isset($_POST['urlorigen']) ? $_POST['urlorigen'] : '';
     ```
 
 === "Solucionado"
+
     ```{ .php .annotate hl_lines="1" }
     /*(1)!*/$_SESSION[$Session]['INDEX_ORIGEN'] = filter_var($_POST['urlorigen'] ?? '', FILTER_SANITIZE_SPECIAL_CHARS);
     ```
