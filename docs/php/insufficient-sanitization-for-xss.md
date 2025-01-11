@@ -4,8 +4,6 @@ tags:
   - Baja
 ---
 
-## Solución
-
 Suele suceder con las variables superglobales, tales como `$_POST` y `$_GET`, al no ser sanitizadas correctamente.
 Pero también puede ocurrir con alguna otra variable.
 
@@ -14,7 +12,7 @@ Envuelve el fragmento de código afectado con la función `#!php htmlspecialchar
 - `#!php ENT_QUOTES`
 - `#!php 'UTF-8'`
 
-=== "Original"
+=== ":material-history: Original"
 
     ```php
     if ($strValjson = fopen("$strValjson", "r")) {
@@ -26,7 +24,7 @@ Envuelve el fragmento de código afectado con la función `#!php htmlspecialchar
     }
     ```
 
-=== "Solucionado"
+=== ":material-checkbox-marked-circle-outline: Solucionado"
 
     ```php hl_lines="8"
     if ($strValjson = fopen("$strValjson", "r")) {

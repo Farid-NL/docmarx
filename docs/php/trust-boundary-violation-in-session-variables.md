@@ -4,8 +4,6 @@ tags:
   - Baja
 ---
 
-## Solución
-
 Suele suceder con las variables superglobales, tales como `$_POST` y `$_GET`, al no ser sanitizadas correctamente.
 
 Envuelve el uso de estas variables con alguna de las siguientes funciones, y su correspondiente
@@ -16,23 +14,20 @@ Envuelve el uso de estas variables con alguna de las siguientes funciones, y su 
 
 ### `filter_input`
 
-!!! warning
+!!! warning "Consideración"
 
-    El contenido de la superglobal que se está filtrando, es el contenido original «en bruto» proporcionado
-    por el SAPI, antes de cualquier modificación de la superglobal por parte del usuario.
+    El contenido de la superglobal que se está filtrando, es el contenido original «en bruto», antes de cualquier
+    modificación por parte del usuario.
 
     Para filtrar una superglobal modificada, utiliza [`filter_var()`](#filter_var) en su lugar.
 
-    *[SAPI]: Server Application Programming Server
-
-
-=== "Original"
+=== ":material-history: Original"
 
     ```php
     $nSeleccion = isset($_GET['nSeleccion']) ? $_GET['nSeleccion'] : 0;
     ```
 
-=== "Solucionado"
+=== ":material-checkbox-marked-circle-outline: Solucionado"
 
     ```{ .php .annotate hl_lines="1" }
     /*(1)!*/$nSeleccion = filter_input(INPUT_GET, 'nSeleccion', FILTER_SANITIZE_NUMBER_INT) ?: 0;
@@ -44,13 +39,13 @@ Envuelve el uso de estas variables con alguna de las siguientes funciones, y su 
 
 ### `filter_var` :material-star:{ title="Recomendado" }
 
-=== "Original"
+=== ":material-history: Original"
 
     ```php
     $_SESSION[$Session]['INDEX_ORIGEN'] = isset($_POST['urlorigen']) ? $_POST['urlorigen'] : '';
     ```
 
-=== "Solucionado"
+=== ":material-checkbox-marked-circle-outline: Solucionado"
 
     ```{ .php .annotate hl_lines="1" }
     /*(1)!*/$_SESSION[$Session]['INDEX_ORIGEN'] = filter_var($_POST['urlorigen'] ?? '', FILTER_SANITIZE_SPECIAL_CHARS);

@@ -4,12 +4,10 @@ tags:
   - Media
 ---
 
-## Solución
-
 Con base a lo reportado en la sección de _Destination_ del reporte de Checkmarx y su correspondiente fragmento de código,
 agrega `#!php session_destroy()` en donde corresponda.
 
-=== "Original"
+=== ":material-history: Original"
 
     ```html+php
     function errorhandler($input) {
@@ -18,7 +16,7 @@ agrega `#!php session_destroy()` en donde corresponda.
     }
     ```
 
-=== "Solucionado"
+=== ":material-checkbox-marked-circle-outline: Solucionado"
 
     ```html+php hl_lines="3"
     function errorhandler($input) {

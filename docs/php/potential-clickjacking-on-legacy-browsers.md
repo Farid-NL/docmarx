@@ -4,17 +4,15 @@ tags:
   - Baja
 ---
 
-## Solución
-
 Agrega el [fragmento de código](#__tabbed_1_2) arriba del todo del archivo, afuera de la etiqueta `<?php`.
 
-=== "Original"
+=== ":material-history: Original"
 
     ```js+php
     <?php
     ```
 
-=== "Solucionado"
+=== ":material-checkbox-marked-circle-outline: Solucionado"
 
     ```js+php hl_lines="1-13"
     <style id = "antiClickjack"> body {display:none !important;} </style>

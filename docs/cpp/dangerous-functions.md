@@ -27,13 +27,13 @@ llamadas.
         Version="9.00"
     ```
 
-??? note "Linux"
+??? linux "`strtok_r`"
 
     Si trabajas con algun aplicativo Linux, solo cambia `strtok` por **`strtok_r`**.
 
     La lógica presentada en el ejemplo se conserva.
 
-=== "Original"
+=== ":material-history: Original"
 
     ```{.cpp .annotate}
     #include <string.h> // (1)!
@@ -48,7 +48,7 @@ llamadas.
 
     1. Incluye esta cabecera si es que no está ya incluida en el proyecto.
 
-=== "Solucionado"
+=== ":material-checkbox-marked-circle-outline: Solucionado"
 
     ```{.cpp .annotate hl_lines="3 4 8"}
     #include <string.h> // (1)!

@@ -4,25 +4,10 @@ tags:
   - Baja
 ---
 
-## Solución
-
 Desactiva las directivas relacionadas con mostrar errores por medio de la **creación** de un archivo `.ini` en la ^^raíz
 del proyecto^^:
 
-```{.ini .annotate title="php.ini"}
-display_startup_errors = Off
-display_errors = Off
-error_reporting = 0
-; (1)!
-```
-
-1. Es aconsejable activar las siguientes directivas
-```ini linenums="4"
-log_errors = On
-error_log = /ruta/a/tu/error.log
-```
-
-=== "Original"
+=== ":material-history: Original"
 
     ```text title="Estructura del proyecto"
     ClubdeProteccion/
@@ -36,17 +21,34 @@ error_log = /ruta/a/tu/error.log
     └── log14-04-2024_proc_validaracceso_intranet.txt
     ```
 
-=== "Solucionado"
+=== ":material-checkbox-marked-circle-outline: Solucionado"
 
-    ```diff title="Estructura del proyecto"
-     ClubdeProteccion/
-     ├── ajax/
-     │   ├── frm/
-     │   ├── json/
-     │   └── proc/
-     ├── files/
-     ├── clubdeProteccion.php
-     ├── index.php
-     ├── log14-04-2024_proc_validaracceso_intranet.txt
-    +└── php.ini
-    ```
+    === ":material-file-tree: Estructura del proyecto"
+
+        ```diff
+         ClubdeProteccion/
+         ├── ajax/
+         │   ├── frm/
+         │   ├── json/
+         │   └── proc/
+         ├── files/
+         ├── clubdeProteccion.php
+         ├── index.php
+         ├── log14-04-2024_proc_validaracceso_intranet.txt
+        +└── php.ini
+        ```
+
+    === ":material-file-cog: php.ini"
+
+        ```{.ini .annotate}
+        display_startup_errors = Off
+        display_errors = Off
+        error_reporting = 0
+        ; (1)!
+        ```
+
+        1. Es aconsejable activar las siguientes directivas
+        ```ini linenums="4"
+        log_errors = On
+        error_log = /ruta/a/tu/log_de_errores.log
+        ```

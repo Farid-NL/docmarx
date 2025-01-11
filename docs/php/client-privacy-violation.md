@@ -4,8 +4,6 @@ tags:
   - Media
 ---
 
-## Solución
-
 Suele suceder porque Checkmarx detecta palabras potencialmente inseguras, tales como `password`, `clave`, `contraseña`,
 etc.
 
@@ -17,9 +15,9 @@ etc.
 
 Asegúrate de rastrear todos sus usos y el origen de este tipo de palabras, y cambia todas.
 
-### Ejemplo 1
+## :octicons-light-bulb-24: Ejemplo
 
-??? info "Reporte de checkmarx"
+??? checkmarx "Reporte de Checkmarx"
 
     === "Source"
 
@@ -49,7 +47,7 @@ Asegúrate de rastrear todos sus usos y el origen de este tipo de palabras, y ca
 
 Checkmarx detecta la palabra `clave` el origen de la vulnerabilidad. Cambiamos dicho valor por `clv`, en el archivo.
 
-=== "Original"
+=== ":material-history: Original"
 
     ```{.js .annotate}
     $.ajax({
@@ -75,7 +73,7 @@ Checkmarx detecta la palabra `clave` el origen de la vulnerabilidad. Cambiamos d
 
     1. La solicitud HTTP utiliza esta URL, siendo éste archivo el origen de `clave`.
 
-=== "Solucionado"
+=== ":material-checkbox-marked-circle-outline: Solucionado"
 
     ```{.js .annotate hl_lines="11"}
     $.ajax({
@@ -104,7 +102,7 @@ Checkmarx detecta la palabra `clave` el origen de la vulnerabilidad. Cambiamos d
 También es necesario modificar el archivo `json_fun_obtener_filtros_rotacion.php`, pues es el archivo que
 genera el JSON consumido por `frm_agregarpropuestasueldosADMON.js`.
 
-=== "Original"
+=== ":material-history: Original"
 
     ```php
     foreach ($ds as $value) {
@@ -117,7 +115,7 @@ genera el JSON consumido por `frm_agregarpropuestasueldosADMON.js`.
     }
     ```
 
-=== "Solucionado"
+=== ":material-checkbox-marked-circle-outline: Solucionado"
 
     ```php hl_lines="4"
     foreach ($ds as $value) {

@@ -4,11 +4,9 @@ tags:
   - Media
 ---
 
-## Solución
-
 Cambia el ciclo `#!php for` por `#!php foreach`
 
-=== "Original"
+=== ":material-history: Original"
 
     ```php
     for ($i = 0; $i < sizeof($response->perfil); $i++) {
@@ -26,7 +24,7 @@ Cambia el ciclo `#!php for` por `#!php foreach`
     }
     ```
 
-=== "Solucionado"
+=== ":material-checkbox-marked-circle-outline: Solucionado"
 
     ```{ .php .annotate hl_lines="1" }
     foreach ($response->perfil as $perfilItem) { // (1)!
