@@ -53,8 +53,10 @@ theme:
     tag:
       php: simple/php
       c: simple/c
+      cs: material/language-csharp
       cpp: simple/cplusplus
       javascript: simple/javascript
+      java: fontawesome/brands/java
       python: simple/python
       angular: simple/angular
       vul-alta: material/alert
@@ -75,8 +77,10 @@ extra:
   tags:
     PHP: php
     C: c
+    C#: cs
     C++: cpp
     Javascript: javascript
+    Java: java
     Python: python
     Angular: angular
     Alta: vul-alta
