@@ -21,6 +21,41 @@ def load_mkdocs_yaml():
     return yaml_data
 
 
+def get_language_dir(language: str) -> str:
+    languages_dict = {
+        "c++": "cpp",
+        "cpp": "cpp",
+        "csharp": "cs",
+        "c#": "cs",
+        "cs": "cs",
+        "javascript": "js",
+        "js": "js",
+        "python": "py",
+        "py": "py",
+    }
+
+    if language.lower() in languages_dict:
+        return languages_dict[language.lower()]
+    else:
+        return language.lower()
+
+
+def get_language_name_for_nav(language: str) -> str:
+    language = get_language_dir(language)
+    languages_dict = {
+        "cpp": "C++",
+        "cs": "C#",
+        "js": "Javascript",
+        "py": "Python",
+        "php": "PHP",
+    }
+
+    if language in languages_dict:
+        return languages_dict[language]
+    else:
+        return language.capitalize()
+
+
 def is_nav_in_yaml(yaml_data):
     if "nav" in yaml_data:
         return True
@@ -67,12 +102,13 @@ def add_vulnerability(language: str, vulnerability_name: str) -> dict | bool:
         exit(1)
 
     nav_element = yaml_data["nav"]
-    md_file = f"{language.lower()}/{vulnerability_name.lower().replace(" ", "-")}.md"
+    md_file = f"{get_language_dir(language)}/{vulnerability_name.lower().replace(" ", "-")}.md"
 
+    language = get_language_name_for_nav(language)
     for section in nav_element:
         language_key = get_name_of(section)
 
-        if language_key.lower() == language.lower():
+        if language_key == language:
             existing_vulnerabilities = [
                 get_name_of(vulnerability).lower()
                 for vulnerability in section[language_key]
@@ -98,6 +134,7 @@ def remove_vulnerability(language: str, vulnerability_name: str) -> dict | bool:
         exit(1)
 
     nav_element = yaml_data["nav"]
+    language = get_language_name_for_nav(language)
     for section in nav_element:
         if language in section:
             for index, vulnerability in enumerate(section[language]):
@@ -113,7 +150,7 @@ def add_vulnerability_file(
     language: str, vulnerability_name: str, severity: str
 ) -> Path | bool:
     vuln_file_name = vulnerability_name.lower().replace(" ", "-") + ".md"
-    vuln_file_dir = ROOT_PATH / "docs" / language.lower()
+    vuln_file_dir = ROOT_PATH / "docs" / get_language_dir(language)
     tmpl_path = ROOT_PATH / "vulnerability.tmpl"
 
     vuln_path = vuln_file_dir / vuln_file_name
@@ -122,7 +159,7 @@ def add_vulnerability_file(
 
     vuln_file_dir.mkdir(parents=True, exist_ok=True)
     with open(tmpl_path, "r") as tmpl_file, open(vuln_path, "w+") as vuln_file:
-        tmpl_content = tmpl_file.read().replace("{{{language}}}", language)
+        tmpl_content = tmpl_file.read().replace("{{{language}}}", get_language_name_for_nav(language))
         if severity:
             tmpl_content = tmpl_content.replace("{{{severity}}}", f"- {severity}")
         else:
@@ -134,7 +171,7 @@ def add_vulnerability_file(
 
 def remove_vulnerability_file(language: str, vulnerability_name: str):
     vuln_file_name = vulnerability_name.lower().replace(" ", "-") + ".md"
-    vuln_file_dir = ROOT_PATH / "docs" / language.lower()
+    vuln_file_dir = ROOT_PATH / "docs" / get_language_dir(language)
 
     vuln_path = vuln_file_dir / vuln_file_name
     if not vuln_path.exists():
