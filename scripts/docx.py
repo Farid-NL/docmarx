@@ -56,11 +56,10 @@ def get_language_name_for_nav(language: str) -> str:
         return language.capitalize()
 
 
-def is_nav_in_yaml(yaml_data):
-    if "nav" in yaml_data:
-        return True
-    else:
-        return False
+def exit_if_nav_not_in_yaml(yaml_data):
+    if "nav" not in yaml_data:
+        click.echo("La sección 'nav' no existe en el archivo mkdocs.yml.", err=True)
+        exit(1)
 
 
 def sort_vulnerabilities(nav_element: dict) -> str:
@@ -97,9 +96,7 @@ def add_vulnerability(language: str, vulnerability_name: str) -> dict | bool:
         return list(element.keys())[0]
 
     yaml_data = load_mkdocs_yaml()
-    if not is_nav_in_yaml(yaml_data):
-        click.echo("La sección 'nav' no existe en el archivo mkdocs.yml.", err=True)
-        exit(1)
+    exit_if_nav_not_in_yaml(yaml_data)
 
     nav_element = yaml_data["nav"]
     md_file = f"{get_language_dir(language)}/{vulnerability_name.lower().replace(" ", "-")}.md"
@@ -129,9 +126,7 @@ def remove_vulnerability(language: str, vulnerability_name: str) -> dict | bool:
         return list(element.keys())[0]
 
     yaml_data = load_mkdocs_yaml()
-    if not is_nav_in_yaml(yaml_data):
-        click.echo("La sección 'nav' no existe en el archivo mkdocs.yml.", err=True)
-        exit(1)
+    exit_if_nav_not_in_yaml(yaml_data)
 
     nav_element = yaml_data["nav"]
     language = get_language_name_for_nav(language)
@@ -275,9 +270,7 @@ def remove(language: str, vulnerability: str):
 def sort():
     """Sort the vulnerabilities in mkdocs.yml."""
     yaml_data = load_mkdocs_yaml()
-    if not is_nav_in_yaml(yaml_data):
-        click.echo("La sección 'nav' no existe en el archivo mkdocs.yml.", err=True)
-        exit(1)
+    exit_if_nav_not_in_yaml(yaml_data)
 
     nav_sorted = sort_vulnerabilities(yaml_data["nav"])
     update_mkdocs_nav(nav_sorted)
