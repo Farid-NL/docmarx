@@ -40,7 +40,7 @@ del proyecto^^:
 
     === ":material-file-cog: php.ini"
 
-        ```{.ini .annotate}
+        ```ini
         display_startup_errors = Off
         display_errors = Off
         error_reporting = 0

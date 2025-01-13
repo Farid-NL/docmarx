@@ -58,7 +58,7 @@ Envuelve la sentencia afectada en un bloque `#!php try-catch`.
 
     === "`PHP >= 7.3, < 8.0`"
 
-        ```{ .php .annotate hl_lines="2 3" }
+        ```php hl_lines="2 3"
         try {
             echo json_decode($respuesta, null, 512, JSON_THROW_ON_ERROR); // (1)!
         } catch (JsonException $e) {
@@ -70,7 +70,7 @@ Envuelve la sentencia afectada en un bloque `#!php try-catch`.
 
     === "`PHP >= 8.0`"
 
-        ```{ .php .annotate hl_lines="2 3" }
+        ```php hl_lines="2 3"
         try {
             echo json_decode($respuesta, flags: JSON_THROW_ON_ERROR); // (1)!
         } catch (JsonException $e) {

@@ -20,7 +20,7 @@ ruff check --fix
 
 Asegúrate de separar cada elemento markdown entre saltos de línea, incluyendo elementos anidados.
 
-```{.shell .annotate hl_lines="2 4 6 10"}
+```shell hl_lines="2 4 6 10"
 ??? note "Una nota importante" # (1)!
 
     === "Tab 1" # (2)!
@@ -181,8 +181,8 @@ import tensorflow as tf
 Las anotaciones de código pueden colocarse en cualquier lugar de un bloque de código donde pueda colocarse un comentario
 para el lenguaje del bloque, por ejemplo, para JavaScript en `// ...` y `/* ... */`, para YAML en `# ...`, etc.
 
-```` title=""
-``` { .c++ .annotate }
+```` title="Anotoaciones en bloques de código"
+``` .c++
 #include <iostream> // (1)!
 
 int main(void) {
@@ -196,7 +196,7 @@ int main(void) {
 
 <div class="result" markdown>
 
-``` { .c++ .annotate }
+``` .c++
 #include <iostream> // (1)!
 
 int main(void) {

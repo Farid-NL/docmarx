@@ -22,7 +22,7 @@ Envuelve el uso de estas variables con alguna de las siguientes funciones, y su 
 
 === ":material-checkbox-marked-circle-outline: Solucionado"
 
-    ```{ .php .annotate hl_lines="1" }
+    ```php hl_lines="1"
     /*(1)!*/$_SESSION[$Session]['INDEX_ORIGEN'] = filter_var($_POST['urlorigen'] ?? '', FILTER_SANITIZE_SPECIAL_CHARS);
     ```
 
@@ -46,7 +46,7 @@ Envuelve el uso de estas variables con alguna de las siguientes funciones, y su 
 
 === ":material-checkbox-marked-circle-outline: Solucionado"
 
-    ```{ .php .annotate hl_lines="1" }
+    ```php hl_lines="1"
     /*(1)!*/$nSeleccion = filter_input(INPUT_GET, 'nSeleccion', FILTER_SANITIZE_NUMBER_INT) ?: 0;
     ```
 

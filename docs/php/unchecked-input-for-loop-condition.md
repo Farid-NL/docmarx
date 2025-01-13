@@ -26,7 +26,7 @@ Cambia el ciclo `#!php for` por `#!php foreach`
 
 === ":material-checkbox-marked-circle-outline: Solucionado"
 
-    ```{ .php .annotate hl_lines="1" }
+    ```php hl_lines="1"
     foreach ($response->perfil as $perfilItem) { // (1)!
         if ($perfilItem->idu_area != $buffer) {
             $buffer = $perfilItem->idu_area;

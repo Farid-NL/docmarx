@@ -51,7 +51,7 @@ Checkmarx detecta la palabra `clave` el origen de la vulnerabilidad. Cambiamos d
 
 === ":material-history: Original"
 
-    ```{.js .annotate}
+    ```js
     $.ajax({
         // ...
         url: 'ajax/json/json_fun_obtener_filtros_rotacion.php' // (1)!
@@ -77,7 +77,7 @@ Checkmarx detecta la palabra `clave` el origen de la vulnerabilidad. Cambiamos d
 
 === ":material-checkbox-marked-circle-outline: Solucionado"
 
-    ```{.js .annotate hl_lines="11"}
+    ```js hl_lines="11"
     $.ajax({
         // ...
         url: 'ajax/json/json_fun_obtener_filtros_rotacion.php' // (1)!

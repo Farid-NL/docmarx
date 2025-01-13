@@ -35,7 +35,7 @@ llamadas.
 
 === ":material-history: Original"
 
-    ```{.cpp .annotate}
+    ```cpp
     #include <string.h> // (1)!
     // ...
     char *token = strtok(cServercomple, ",,");
@@ -50,7 +50,7 @@ llamadas.
 
 === ":material-checkbox-marked-circle-outline: Solucionado"
 
-    ```{.cpp .annotate hl_lines="3 4 8"}
+    ```cpp hl_lines="3 4 8"
     #include <string.h> // (1)!
     // ...
     char* context = NULL;

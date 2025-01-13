@@ -18,6 +18,7 @@ theme:
   language: es
   features:
     - content.code.copy
+    - content.code.annotate
     - content.tooltips
     - content.action.edit
     - content.action.view
