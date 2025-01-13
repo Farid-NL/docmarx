@@ -54,8 +54,6 @@ theme:
     text: Helvetica Neue
     code: JetBrains Mono
   icon:
-    edit: material/pencil
-    view: material/eye
     tag:
       php: simple/php
       c: simple/c
