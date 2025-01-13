@@ -144,6 +144,7 @@ nav:
       - Improper Exception Handling: php/improper-exception-handling.md
       - Information Exposure Through an Error Message: php/information-exposure-through-an-error-message.md
       - Insufficient Sanitization for XSS: php/insufficient-sanitization-for-xss.md
+      - Missing Framing Policy: php/missing-framing-policy.md
       - Potential Clickjacking on Legacy Browsers: php/potential-clickjacking-on-legacy-browsers.md
       - Reflected XSS: php/reflected-xss.md
       - Session Fixation: php/session-fixation.md
