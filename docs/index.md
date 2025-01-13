@@ -42,7 +42,7 @@ Asegúrate de separar cada elemento markdown entre saltos de línea, incluyendo 
 
 ### :material-code-json: Bloques de código [:material-link:](https://squidfunk.github.io/mkdocs-material/reference/code-blocks/#usage "Material for MkDocs")
 
-````text title="Bloque de código"
+```` title="Bloque de código"
 ``` py
 import tensorflow as tf
 ```
@@ -158,7 +158,7 @@ import tensorflow as tf
 
 ### :material-alert-outline: Leyendas [:material-link:](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#usage "Material for MkDocs")
 
-```text title="Leyenda"
+``` title="Leyenda"
 !!! note "Nota"
 
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
@@ -173,6 +173,28 @@ import tensorflow as tf
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
     nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
     massa, nec semper lorem quam in massa.
+
+</div>
+
+#### Tipos personalizados
+
+``` title="Linux"
+!!! linux "Información en Linux"
+```
+
+<div class="result" markdown>
+
+!!! linux "Información en Linux"
+
+</div>
+
+``` title="Checkmarx"
+!!! checkmarx "Reporte de Checkmarx"
+```
+
+<div class="result" markdown>
+
+!!! checkmarx "Reporte de Checkmarx"
 
 </div>
 
