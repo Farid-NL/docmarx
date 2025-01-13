@@ -4,7 +4,8 @@ Documentación de vulnerabilidades mitigadas reportadas por Checkmarx.
 
 ## Como contribuir
 
-Crea un pull request a través de Github.
+Crea un pull request a través de Github y lee el [`README.md`](https://github.com/Farid-NL/docmarx?tab=readme-ov-file#----------------docmarx)
+del proyecto.
 
 ### Code style: Pyhon :material-language-python:
 
@@ -70,7 +71,7 @@ import tensorflow as tf
 
     <div class="result" markdown>
 
-    ``` py linenums="1" hl_lines="2 4"
+    ``` py hl_lines="2 4"
     def bubble_sort(items):
         for i in range(len(items)):
             for j in range(len(items) - 1 - i):

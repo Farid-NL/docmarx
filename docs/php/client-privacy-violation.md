@@ -51,7 +51,7 @@ Checkmarx detecta la palabra `clave` el origen de la vulnerabilidad. Cambiamos d
 
 === ":material-history: Original"
 
-    ```js
+    ```js hl_lines="11"
     $.ajax({
         // ...
         url: 'ajax/json/json_fun_obtener_filtros_rotacion.php' // (1)!
@@ -106,13 +106,11 @@ genera el JSON consumido por `frm_agregarpropuestasueldosADMON.js`.
 
 === ":material-history: Original"
 
-    ```php
+    ```php hl_lines="4"
     foreach ($ds as $value) {
         $arr[] = array('nombre' => trim($value['snombre']),
             'value' => $value['iid'],
             'clave' => $value['sclave']
-            //'numeroregion' => $value['numeroregion'],
-            //'nombre' => trim($value['nombre'])
         );
     }
     ```
@@ -124,8 +122,6 @@ genera el JSON consumido por `frm_agregarpropuestasueldosADMON.js`.
         $arr[] = array('nombre' => trim($value['snombre']),
             'value' => $value['iid'],
             'clv' => $value['sclave']
-            //'numeroregion' => $value['numeroregion'],
-            //'nombre' => trim($value['nombre'])
         );
     }
     ```

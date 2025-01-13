@@ -114,7 +114,7 @@ markdown_extensions:
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.highlight:
-      linenums: true
+      #linenums: true
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true

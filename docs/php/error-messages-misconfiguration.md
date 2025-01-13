@@ -48,7 +48,7 @@ del proyecto^^:
         ```
 
         1. Es aconsejable activar las siguientes directivas
-        ```ini linenums="4"
+        ```ini
         log_errors = On
         error_log = /ruta/a/tu/log_de_errores.log
         ```
