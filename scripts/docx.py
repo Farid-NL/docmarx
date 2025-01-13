@@ -74,7 +74,7 @@ def sort_vulnerabilities(nav_element: dict) -> str:
 
     for section in nav_element:
         for section_name in section:
-            if section_name != "Inicio":
+            if section_name != "Docmarx":
                 # Ordena las vulnerabilidades alfabéticamente
                 section[section_name] = sorted(
                     section[section_name],
