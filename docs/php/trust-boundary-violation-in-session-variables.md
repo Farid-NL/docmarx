@@ -12,9 +12,26 @@ Envuelve el uso de estas variables con alguna de las siguientes funciones, y su 
 - `#!php filter_input()`
 - `#!php filter_var()`
 
+### `filter_var` :material-star:{ title="Recomendado" }
+
+=== ":material-history: Original"
+
+    ```php
+    $_SESSION[$Session]['INDEX_ORIGEN'] = isset($_POST['urlorigen']) ? $_POST['urlorigen'] : '';
+    ```
+
+=== ":material-checkbox-marked-circle-outline: Solucionado"
+
+    ```{ .php .annotate hl_lines="1" }
+    /*(1)!*/$_SESSION[$Session]['INDEX_ORIGEN'] = filter_var($_POST['urlorigen'] ?? '', FILTER_SANITIZE_SPECIAL_CHARS);
+    ```
+
+    1. Al inferir el tipo de variable _(string)_ de `$_POST['urlorigen']`, se usó el filtro de saneamiento
+    `FILTER_SANITIZE_SPECIAL_CHARS`.
+
 ### `filter_input`
 
-!!! warning "Consideración"
+??? warning "Consideración"
 
     El contenido de la superglobal que se está filtrando, es el contenido original «en bruto», antes de cualquier
     modificación por parte del usuario.
@@ -35,21 +52,3 @@ Envuelve el uso de estas variables con alguna de las siguientes funciones, y su 
 
     1. Al inferir el tipo de variable _(int)_ de `$nSeleccion`, se usó el filtro de saneamiento
     `FILTER_SANITIZE_NUMBER_INT`.
----
-
-### `filter_var` :material-star:{ title="Recomendado" }
-
-=== ":material-history: Original"
-
-    ```php
-    $_SESSION[$Session]['INDEX_ORIGEN'] = isset($_POST['urlorigen']) ? $_POST['urlorigen'] : '';
-    ```
-
-=== ":material-checkbox-marked-circle-outline: Solucionado"
-
-    ```{ .php .annotate hl_lines="1" }
-    /*(1)!*/$_SESSION[$Session]['INDEX_ORIGEN'] = filter_var($_POST['urlorigen'] ?? '', FILTER_SANITIZE_SPECIAL_CHARS);
-    ```
-
-    1. Al inferir el tipo de variable _(string)_ de `$_POST['urlorigen']`, se usó el filtro de saneamiento
-    `FILTER_SANITIZE_SPECIAL_CHARS`.

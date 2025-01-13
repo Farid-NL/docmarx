@@ -28,6 +28,7 @@ Asegúrate de rastrear todos sus usos y el origen de este tipo de palabras, y ca
         **Object:** clave
 
         **Code snippet:**
+
         ```html+php linenums="3132"
         option += "<option style='text-align: left;' value='" + json.datos[i].clave + "'>" + json.datos[i].clave + ' - ' + json.datos[i].nombre + "</option>";
         ```
@@ -41,6 +42,7 @@ Asegúrate de rastrear todos sus usos y el origen de este tipo de palabras, y ca
         **Object:** html
 
         **Code snippet:**
+
         ```html+php linenums="3136"
         $("#cbo_rot_seccion").trigger("chosen:updated").html(option);
         ```

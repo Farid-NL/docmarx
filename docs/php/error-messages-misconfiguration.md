@@ -9,7 +9,7 @@ del proyecto^^:
 
 === ":material-history: Original"
 
-    ```text title="Estructura del proyecto"
+    ```title="Estructura del proyecto"
     ClubdeProteccion/
     ├── ajax/
     │   ├── frm/
