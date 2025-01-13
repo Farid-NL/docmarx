@@ -7,10 +7,21 @@ tags:
 Suele suceder con las variables superglobales, tales como `$_POST` y `$_GET`, al no ser sanitizadas correctamente.
 
 Envuelve el uso de estas variables con alguna de las siguientes funciones, y su correspondiente
-[filtro de saneamiento](https://www.php.net/manual/en/filter.constants.php#constant.filter-unsafe-raw):
+[filtro de saneamiento](https://www.php.net/manual/en/filter.constants.php#constant.filter-unsafe-raw) (1):
+{ .annotate }
 
-- `#!php filter_input()`
-- `#!php filter_var()`
+1.  Evita usar los siguientes filtros, pues resultán en vulnerabilidad _Deprecated Functions_
+
+    - `FILTER_SANITIZE_STRING`
+    - `FILTER_SANITIZE_STRIPPED`
+
+<div markdown>
+
+* `#!php filter_input()`
+* `#!php filter_var()`
+
+</div>
+
 
 ### `filter_var` :material-star:{ title="Recomendado" }
 
