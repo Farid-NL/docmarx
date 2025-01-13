@@ -154,7 +154,8 @@ def add_vulnerability_file(
 
     vuln_file_dir.mkdir(parents=True, exist_ok=True)
     with open(tmpl_path, "r") as tmpl_file, open(vuln_path, "w+") as vuln_file:
-        tmpl_content = tmpl_file.read().replace("{{{language}}}", get_language_name_for_nav(language))
+        language = get_language_name_for_nav(language)
+        tmpl_content = tmpl_file.read().replace("{{{language}}}", language)
         if severity:
             tmpl_content = tmpl_content.replace("{{{severity}}}", f"- {severity}")
         else:
