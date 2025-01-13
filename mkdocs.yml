@@ -3,6 +3,7 @@
 # Información del proyecto
 site_name: Docmarx
 site_url: https://farid-nl.github.io/docmarx/
+edit_uri: edit/main/docs/
 
 # Información del repositorio
 repo_url: https://github.com/farid-nl/docmarx
@@ -18,6 +19,8 @@ theme:
   features:
     - content.code.copy
     - content.tooltips
+    - content.action.edit
+    - content.action.view
     #- content.code.select
     - navigation.tracking
     - navigation.tabs
@@ -50,6 +53,8 @@ theme:
     text: Helvetica Neue
     code: JetBrains Mono
   icon:
+    edit: material/pencil
+    view: material/eye
     tag:
       php: simple/php
       c: simple/c
