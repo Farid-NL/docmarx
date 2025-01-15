@@ -136,9 +136,11 @@ def remove_vulnerability(language: str, vulnerability_name: str) -> dict | bool:
                 vulnerability_identifier = get_name_of(vulnerability)
                 if vulnerability_identifier == vulnerability_name:
                     section[language].pop(index)
-            return nav_element
+                    return nav_element
 
-    return False
+            return f"Vulnerabilidad '{vulnerability_name}' no existe"
+
+    return f"Lenguaje '{language}' no existe"
 
 
 def add_vulnerability_file(
@@ -253,13 +255,15 @@ def remove(language: str, vulnerability: str):
     Note: VULNERABILITY_NAME must be exactly as presented in mkdocs.yml
     """
     is_nav_modified = remove_vulnerability(language, vulnerability)
-    click.secho(f"{vulnerability}:", fg="blue")
-    if is_nav_modified:
+    if type(is_nav_modified) is list:
         nav_sorted = sort_vulnerabilities(is_nav_modified)
         update_mkdocs_nav(nav_sorted)
 
+        click.secho(f"{vulnerability}:", fg="blue")
         click.echo(f"  {click.style("✓", fg="green")} mkdocs.yml actualizado")
     else:
+        click.secho(f"{vulnerability}: ", fg="blue", nl=False)
+        click.secho(is_nav_modified, fg="red")
         click.echo(f"  {click.style("x", fg="red")} mkdocs.yml sin cambios")
 
     is_file_removed = remove_vulnerability_file(language, vulnerability)
