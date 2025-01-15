@@ -225,13 +225,15 @@ def add(language: str, vulnerability: str, alta: bool, media: bool, baja: bool):
         exit(1)
 
     is_nav_modified = add_vulnerability(language, vulnerability)
-    click.secho(f"{vulnerability}:", fg="blue")
     if is_nav_modified:
         nav_sorted = sort_vulnerabilities(is_nav_modified)
         update_mkdocs_nav(nav_sorted)
 
+        click.secho(f"{vulnerability}: ", fg="blue")
         click.echo(f"  {click.style("✓", fg="green")} mkdocs.yml actualizado")
     else:
+        click.secho(f"{vulnerability}: ", fg="blue", nl=False)
+        click.secho("Ya existe", fg="red")
         click.echo(f"  {click.style("x", fg="red")} mkdocs.yml sin cambios")
 
     severity = "Alta" if alta else "Media" if media else "Baja" if baja else None
