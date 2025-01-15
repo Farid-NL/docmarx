@@ -62,7 +62,7 @@ def exit_if_nav_not_in_yaml(yaml_data):
         exit(1)
 
 
-def sort_vulnerabilities(nav_element: dict) -> str:
+def sort_vulnerabilities(nav_element: list) -> str:
     class IndentDumper(yaml.Dumper):
         """Clase auxiliar para incrementar la indentación"""
 
@@ -91,7 +91,7 @@ def sort_vulnerabilities(nav_element: dict) -> str:
     return f"nav:\n{sorted_nav_yaml}"
 
 
-def add_vulnerability(language: str, vulnerability_name: str) -> dict | bool:
+def add_vulnerability(language: str, vulnerability_name: str) -> list | bool:
     def get_name_of(element: dict) -> str:
         return list(element.keys())[0]
 
@@ -121,7 +121,7 @@ def add_vulnerability(language: str, vulnerability_name: str) -> dict | bool:
     return nav_element
 
 
-def remove_vulnerability(language: str, vulnerability_name: str) -> dict | bool:
+def remove_vulnerability(language: str, vulnerability_name: str) -> list | str:
     def get_name_of(element: dict) -> str:
         return list(element.keys())[0]
 
