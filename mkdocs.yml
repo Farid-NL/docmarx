@@ -140,6 +140,7 @@ nav:
   - Docmarx: index.md
   - PHP:
       - Client Privacy Violation: php/client-privacy-violation.md
+      - Deprecated Functions: php/deprecated-functions.md
       - Error Messages Misconfiguration: php/error-messages-misconfiguration.md
       - Improper Exception Handling: php/improper-exception-handling.md
       - Information Exposure Through an Error Message: php/information-exposure-through-an-error-message.md
