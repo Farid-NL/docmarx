@@ -149,6 +149,7 @@ nav:
       - Missing Framing Policy: php/missing-framing-policy.md
       - Potential Clickjacking on Legacy Browsers: php/potential-clickjacking-on-legacy-browsers.md
       - Reflected XSS: php/reflected-xss.md
+      - SSRF: php/ssrf.md
       - Session Fixation: php/session-fixation.md
       - Trust Boundary Violation in Session Variables: php/trust-boundary-violation-in-session-variables.md
       - Unchecked Input for Loop Condition: php/unchecked-input-for-loop-condition.md
