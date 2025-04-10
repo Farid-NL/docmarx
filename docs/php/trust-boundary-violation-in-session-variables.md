@@ -17,8 +17,8 @@ Envuelve el uso de estas variables con alguna de las siguientes funciones, y su 
 
 <div markdown>
 
-* `#!php filter_input()`
-* `#!php filter_var()`
+- `#!php filter_input()`
+- `#!php filter_var()`
 
 </div>
 
