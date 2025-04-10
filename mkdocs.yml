@@ -154,3 +154,5 @@ nav:
   - C++:
       - Dangerous Functions: cpp/dangerous-functions.md
       - Unchecked Return Value: cpp/unchecked-return-value.md
+  - Javascript:
+      - Client DOM Open Redirect: js/client-dom-open-redirect.md
