@@ -4,8 +4,8 @@ tags:
   - Media
 ---
 
-Con base a lo reportado en la sección de _Destination_ del reporte de Checkmarx y su correspondiente fragmento de código,
-agrega `#!php session_destroy()` en donde corresponda.
+Agrega `#!php session_destroy()` en donde corresponda según lo reportado en la sección de _Destination_ del reporte de
+Checkmarx y su correspondiente fragmento de código.
 
 === ":material-history: Original"
 
