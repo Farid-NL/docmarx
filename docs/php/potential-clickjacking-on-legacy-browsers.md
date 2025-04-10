@@ -15,7 +15,7 @@ Agrega el [fragmento de código](#__tabbed_1_2) arriba del todo del archivo, afu
 === ":material-checkbox-marked-circle-outline: Solucionado"
 
     ```js+php hl_lines="1-13"
-    <style id = "antiClickjack"> body {display:none !important;} </style>
+    <style id = "antiClickjack"> body {display:block !important;} </style>
     <script type="text/javascript">
         if(self === top)
         {
