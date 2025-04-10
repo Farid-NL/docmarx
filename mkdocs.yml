@@ -156,4 +156,5 @@ nav:
       - Unchecked Return Value: cpp/unchecked-return-value.md
   - Javascript:
       - Client DOM Open Redirect: js/client-dom-open-redirect.md
+      - Client DOM Stored XSS: js/client-dom-stored-xss.md
       - Client JQuery Deprecated Symbols: js/client-jquery-deprecated-symbols.md
