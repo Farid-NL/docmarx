@@ -10,9 +10,8 @@ Implementa una alternativa segura y recomendada para cualquier función que se h
 
 1. Crea un [header](../assets/code/Funciones_vul.h){:download="Funciones_vul.h" title="Descargar header"} en la raíz del
    proyecto que contendrá [funciones homólogas a funciones con vulnerabilidades]. En este caso `memset`
-2. Incluye el header en el archivo afectado con la vulnerabilidad.
-3. Instancía la clase `Funciones_vul`
-4. Utiliza la instancia para reemplazar `memset` por `llenamemoria`
+2. Instancía la clase `Funciones_vul` y reemplaza `memset` por `llenamemoria` en el archivo afectado con la
+   vulnerabilidad.
 
 [funciones homólogas a funciones con vulnerabilidades]: header-de-remediaciones.md
 
@@ -22,10 +21,10 @@ Implementa una alternativa segura y recomendada para cualquier función que se h
 
         ```
         sn0015/
-        ├── Clases
+        ├── Clases/
         │   ├── CSapConsultarCifrasDeControlPOSGRESQL01.cpp
         │   ├── CSapConsultarCifrasDeControlPOSGRESQL01.hpp
-        │   ├── ...
+        │   └── ...
         ├── DlgCompararCifrasQuincena.cpp
         ├── DlgCompararCifrasQuincena.h
         ├── ggn.lib
@@ -54,10 +53,10 @@ Implementa una alternativa segura y recomendada para cualquier función que se h
 
         ```diff
          sn0015/
-         ├── Clases
+         ├── Clases/
          │   ├── CSapConsultarCifrasDeControlPOSGRESQL01.cpp
          │   ├── CSapConsultarCifrasDeControlPOSGRESQL01.hpp
-         │   ├── ...
+         │   └── ...
          ├── DlgCompararCifrasQuincena.cpp
          ├── DlgCompararCifrasQuincena.h
         +├── Funciones_vul.h

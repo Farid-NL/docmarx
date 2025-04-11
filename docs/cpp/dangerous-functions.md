@@ -64,9 +64,8 @@ llamadas.
 
 1. Crea un [header](../assets/code/Funciones_vul.h){:download="Funciones_vul.h" title="Descargar header"} en la raíz del
    proyecto que contendrá [funciones homólogas a funciones con vulnerabilidades]. En este caso `memcpy`
-2. Incluye el header en el archivo afectado con la vulnerabilidad.
-3. Instancía la clase `Funciones_vul`
-4. Utiliza la instancia para reemplazar `memcpy` por `memorycopy`
+2. Instancía la clase `Funciones_vul` y reemplaza `memcpy` por `memorycopy` en el archivo afectado con la
+   vulnerabilidad.
 
 [funciones homólogas a funciones con vulnerabilidades]: header-de-remediaciones.md
 
@@ -76,10 +75,10 @@ llamadas.
 
         ```
         sn0015/
-        ├── Clases
+        ├── Clases/
         │   ├── CSapConsultarCifrasDeControlPOSGRESQL01.cpp
         │   ├── CSapConsultarCifrasDeControlPOSGRESQL01.hpp
-        │   ├── ...
+        │   └── ...
         ├── DlgCompararCifrasQuincena.cpp
         ├── DlgCompararCifrasQuincena.h
         ├── ggn.lib
@@ -108,10 +107,10 @@ llamadas.
 
         ```diff
          sn0015/
-         ├── Clases
+         ├── Clases/
          │   ├── CSapConsultarCifrasDeControlPOSGRESQL01.cpp
          │   ├── CSapConsultarCifrasDeControlPOSGRESQL01.hpp
-         │   ├── ...
+         │   └── ...
          ├── DlgCompararCifrasQuincena.cpp
          ├── DlgCompararCifrasQuincena.h
         +├── Funciones_vul.h
