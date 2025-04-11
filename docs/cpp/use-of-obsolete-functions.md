@@ -8,76 +8,43 @@ Implementa una alternativa segura y recomendada para cualquier función que se h
 
 ## `memset`
 
-1. Crea un [header](../assets/code/Funciones_vul.h){:download="Funciones_vul.h" title="Descargar header"} en la raíz del
-   proyecto que contendrá [funciones homólogas a funciones con vulnerabilidades]. En este caso `memset`
+1. Crea un [header](../assets/code/Funciones_vul.h){:download="Funciones_vul.h" title="Descargar header"} en la [raíz del
+   proyecto]{title="Ejemplo"} que contendrá funciones homólogas a funciones con vulnerabilidades. En este caso `memset`
 2. Instancía la clase `Funciones_vul` y reemplaza `memset` por ^^**`llenamemoria`**^^ en el archivo afectado con la
    vulnerabilidad.
 
-[funciones homólogas a funciones con vulnerabilidades]: header-de-remediaciones.md
+[raíz del proyecto]: header-de-remediaciones.md/#como-usarlo
 
 === ":material-history: Original"
 
-    === ":material-file-tree: Estructura del proyecto"
+    ```cpp
+    #define MAIN
+    //...
 
-        ```
-        sn0015/
-        ├── Clases/
-        │   ├── CSapConsultarCifrasDeControlPOSGRESQL01.cpp
-        │   ├── CSapConsultarCifrasDeControlPOSGRESQL01.hpp
-        │   └── ...
-        ├── DlgCompararCifrasQuincena.cpp
-        ├── DlgCompararCifrasQuincena.h
-        ├── ggn.lib
-        ├── ModuloPrincipal.cpp
-        └── ...
-        ```
 
-    === ":simple-cplusplus: Código"
+    int SN0015( char *cInput1, char *cInput2 )
+    {
 
-        ```cpp
-        #define MAIN
         //...
-
-        int SN0015( char *cInput1, char *cInput2 )
-        {
-            //...
-            memset( &parametroEntrada1, 0, sizeof( EstructurasElp ) );
-	        memset( &parametroEntrada2, 0, sizeof( EstructurasElp ) );
-            //...
-        }
-        ```
+        memset( &parametroEntrada1, 0, sizeof( EstructurasElp ) );
+        memset( &parametroEntrada2, 0, sizeof( EstructurasElp ) );
+        //...
+    }
+    ```
 
 === ":material-checkbox-marked-circle-outline: Solucionado"
 
-    === ":material-file-tree: Estructura del proyecto"
+    ```cpp hl_lines="3 7 9-10"
+    #define MAIN
+    //...
+    #include "Funciones_vul.h"
 
-        ```diff
-         sn0015/
-         ├── Clases/
-         │   ├── CSapConsultarCifrasDeControlPOSGRESQL01.cpp
-         │   ├── CSapConsultarCifrasDeControlPOSGRESQL01.hpp
-         │   └── ...
-         ├── DlgCompararCifrasQuincena.cpp
-         ├── DlgCompararCifrasQuincena.h
-        +├── Funciones_vul.h
-         ├── ggn.lib
-         ├── ModuloPrincipal.cpp
-         └── ...
-        ```
-
-    === ":simple-cplusplus: Código"
-
-        ```cpp hl_lines="2 7 9-10"
-        #define MAIN
-        #include "Funciones_vul.h"
+    int SN0015( char *cInput1, char *cInput2 )
+    {
+        Funciones_vul vul;
         //...
-
-        int SN0015( char *cInput1, char *cInput2 )
-        {
-            Funciones_vul vul;
-            //...
-            vul.llenamemoria( &parametroEntrada1, 0, sizeof( EstructurasElp ) );
-	        vul.llenamemoria( &parametroEntrada2, 0, sizeof( EstructurasElp ) );
-            //...
-        }
-        ```
+        vul.llenamemoria( &parametroEntrada1, 0, sizeof( EstructurasElp ) );
+        vul.llenamemoria( &parametroEntrada2, 0, sizeof( EstructurasElp ) );
+        //...
+    }
+    ```

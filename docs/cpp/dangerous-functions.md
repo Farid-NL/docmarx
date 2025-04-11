@@ -62,222 +62,123 @@ llamadas.
 
 ## `memcpy`
 
-1. Crea un [header](../assets/code/Funciones_vul.h){:download="Funciones_vul.h" title="Descargar header"} en la raíz del
-   proyecto que contendrá [funciones homólogas a funciones con vulnerabilidades]. En este caso `memcpy`
+1. Crea un [header](../assets/code/Funciones_vul.h){:download="Funciones_vul.h" title="Descargar header"} en la [raíz del
+   proyecto]{title="Ejemplo"} que contendrá funciones homólogas a funciones con vulnerabilidades. En este caso `memcpy`
 2. Instancía la clase `Funciones_vul` y reemplaza `memcpy` por ^^**`memorycopy`**^^ en el archivo afectado con la
    vulnerabilidad.
 
-[funciones homólogas a funciones con vulnerabilidades]: header-de-remediaciones.md
+[raíz del proyecto]: header-de-remediaciones.md/#como-usarlo
 
 === ":material-history: Original"
 
-    === ":material-file-tree: Estructura del proyecto"
+    ```cpp
+    #define MAIN
+    //...
 
-        ```
-        sn0015/
-        ├── Clases/
-        │   ├── CSapConsultarCifrasDeControlPOSGRESQL01.cpp
-        │   ├── CSapConsultarCifrasDeControlPOSGRESQL01.hpp
-        │   └── ...
-        ├── DlgCompararCifrasQuincena.cpp
-        ├── DlgCompararCifrasQuincena.h
-        ├── ggn.lib
-        ├── ModuloPrincipal.cpp
-        └── ...
-        ```
 
-    === ":simple-cplusplus: Código"
+    int SN0015( char *cInput1, char *cInput2 )
+    {
 
-        ```cpp
-        #define MAIN
         //...
-
-        int SN0015( char *cInput1, char *cInput2 )
-        {
-            //...
-            memcpy( &parametroEntrada1, cInput1, sizeof( EstructurasElp ) );
-            memcpy( &parametroEntrada2, cInput2, sizeof( EstructurasElp ) );
-            //...
-        }
-        ```
+        memcpy( &parametroEntrada1, cInput1, sizeof( EstructurasElp ) );
+        memcpy( &parametroEntrada2, cInput2, sizeof( EstructurasElp ) );
+        //...
+    }
+    ```
 
 === ":material-checkbox-marked-circle-outline: Solucionado"
 
-    === ":material-file-tree: Estructura del proyecto"
+    ```cpp hl_lines="3 7 9-10"
+    #define MAIN
+    //...
+    #include "Funciones_vul.h"
 
-        ```diff
-         sn0015/
-         ├── Clases/
-         │   ├── CSapConsultarCifrasDeControlPOSGRESQL01.cpp
-         │   ├── CSapConsultarCifrasDeControlPOSGRESQL01.hpp
-         │   └── ...
-         ├── DlgCompararCifrasQuincena.cpp
-         ├── DlgCompararCifrasQuincena.h
-        +├── Funciones_vul.h
-         ├── ggn.lib
-         ├── ModuloPrincipal.cpp
-         └── ...
-        ```
-
-    === ":simple-cplusplus: Código"
-
-        ```cpp hl_lines="2 7 9-10"
-        #define MAIN
-        #include "Funciones_vul.h"
+    int SN0015( char *cInput1, char *cInput2 )
+    {
+        Funciones_vul vul;
         //...
-
-        int SN0015( char *cInput1, char *cInput2 )
-        {
-            Funciones_vul vul;
-            //...
-            vul.memorycopy( &parametroEntrada1, cInput1, sizeof( EstructurasElp ) );
-            vul.memorycopy( &parametroEntrada2, cInput2, sizeof( EstructurasElp ) );
-            //...
-        }
-        ```
+        vul.memorycopy( &parametroEntrada1, cInput1, sizeof( EstructurasElp ) );
+        vul.memorycopy( &parametroEntrada2, cInput2, sizeof( EstructurasElp ) );
+        //...
+    }
+    ```
 
 ## `sprintf`
 
-1. Crea un [header](../assets/code/Funciones_vul.h){:download="Funciones_vul.h" title="Descargar header"} en la raíz del
-   proyecto que contendrá [funciones homólogas a funciones con vulnerabilidades]. En este caso `sprintf`
+1. Crea un [header](../assets/code/Funciones_vul.h){:download="Funciones_vul.h" title="Descargar header"} en la [raíz del
+   proyecto]{title="Ejemplo"} que contendrá funciones homólogas a funciones con vulnerabilidades. En este caso `sprintf`
 2. Instancía la clase `Funciones_vul` y reemplaza `sprintf` por ^^**`imprimirsprintf`**^^ en el archivo afectado con la
    vulnerabilidad.
 
-[funciones homólogas a funciones con vulnerabilidades]: header-de-remediaciones.md
+[raíz del proyecto]: header-de-remediaciones.md/#como-usarlo
 
 === ":material-history: Original"
 
-    === ":material-file-tree: Estructura del proyecto"
+    ```cpp
+    //...
 
-        ```
-        sn0033/
-        ├── clases/
-        │   ├── CConsultaLiquidaciones.cpp
-        │   ├── CConsultaLiquidaciones.hpp
-        │   └── ...
-        ├── DlgConsultaliquidacionesvacacionesyoaguinaldo.cpp
-        ├── DlgConsultaliquidacionesvacacionesyoaguinaldo.h
-        ├── DlgGenerarliquidaciones.cpp
-        ├── ModuloPrincipal.cpp
-        └── ...
-        ```
 
-    === ":simple-cplusplus: Código"
+    BOOL CDlgGenerarliquidaciones::OnInitDialog()
+    {
 
-        ```cpp
         //...
-
-        BOOL CDlgGenerarliquidaciones::OnInitDialog()
-        {
-            //...
-            sprintf(cTexto,"Error en "+ sqlTxt);
-            //...
-        }
-        ```
+        sprintf(cTexto,"Error en "+ sqlTxt);
+        //...
+    }
+    ```
 
 === ":material-checkbox-marked-circle-outline: Solucionado"
 
-    === ":material-file-tree: Estructura del proyecto"
+    ```cpp hl_lines="2 6 8"
+    //...
+    #include "Funciones_vul.h"
 
-        ```diff
-         sn0033/
-         ├── clases/
-         │   ├── CConsultaLiquidaciones.cpp
-         │   ├── CConsultaLiquidaciones.hpp
-         │   └── ...
-         ├── DlgConsultaliquidacionesvacacionesyoaguinaldo.cpp
-         ├── DlgConsultaliquidacionesvacacionesyoaguinaldo.h
-         ├── DlgGenerarliquidaciones.cpp
-        +├── Funciones_vul.h
-         ├── ModuloPrincipal.cpp
-         └── ...
-        ```
-
-    === ":simple-cplusplus: Código"
-
-        ```cpp hl_lines="1 6 8"
-        #include "Funciones_vul.h"
+    BOOL CDlgGenerarliquidaciones::OnInitDialog()
+    {
+        Funciones_vul vul;
         //...
-
-        BOOL CDlgGenerarliquidaciones::OnInitDialog()
-        {
-            Funciones_vul vul;
-            //...
-            vul.imprimirsprintf(cTexto,"Error en "+ sqlTxt);
-            //...
-        }
-        ```
+        vul.imprimirsprintf(cTexto,"Error en "+ sqlTxt);
+        //...
+    }
+    ```
 
 ## `atoi`
 
-1. Crea un [header](../assets/code/Funciones_vul.h){:download="Funciones_vul.h" title="Descargar header"} en la raíz del
-   proyecto que contendrá [funciones homólogas a funciones con vulnerabilidades]. En este caso `atoi`
+1. Crea un [header](../assets/code/Funciones_vul.h){:download="Funciones_vul.h" title="Descargar header"} en la [raíz del
+   proyecto]{title="Ejemplo"} que contendrá funciones homólogas a funciones con vulnerabilidades. En este caso `atoi`
 2. Instancía la clase `Funciones_vul` y reemplaza `atoi` por ^^**`caracentero`**^^ en el archivo afectado con la
    vulnerabilidad.
 
-[funciones homólogas a funciones con vulnerabilidades]: header-de-remediaciones.md
+[raíz del proyecto]: header-de-remediaciones.md/#como-usarlo
 
 === ":material-history: Original"
 
-    === ":material-file-tree: Estructura del proyecto"
+    ```cpp
+    #define MAIN
 
-        ```
-        sn0047/
-        ├── Clases/
-        │   ├── CMovtosNominaEmpresa.cpp
-        │   ├── CMovtosNominaEmpresa.hpp
-        │   └── ...
-        ├── DlgMovimientosTraspasadosNomina.cpp
-        ├── DlgMovimientosTraspasadosNomina.h
-        ├── DlgMovimientosTraspasadosNomina.htm
-        ├── ModuloPrincipal.cpp
-        └── ...
-        ```
+    //...
 
-    === ":simple-cplusplus: Código"
+    int SN0047(char *cInput1,char *cInput2)
+    {
 
-        ```cpp
-        #define MAIN
         //...
-
-        int SN0047(char *cInput1,char *cInput2)
-        {
-            //...
-            iOpcion = atoi(EstElpGralDllEnt1.opcion);
-            //...
-        }
-        ```
+        iOpcion = atoi(EstElpGralDllEnt1.opcion);
+        //...
+    }
+    ```
 
 === ":material-checkbox-marked-circle-outline: Solucionado"
 
-    === ":material-file-tree: Estructura del proyecto"
+    ```cpp hl_lines="2 7 9"
+    #define MAIN
+    #include "Funciones_vul.h"
+    //...
 
-        ```diff
-         sn0047/
-         ├── Clases/
-         │   ├── CMovtosNominaEmpresa.cpp
-         │   ├── CMovtosNominaEmpresa.hpp
-         │   └── ...
-         ├── DlgMovimientosTraspasadosNomina.cpp
-         ├── DlgMovimientosTraspasadosNomina.h
-         ├── DlgMovimientosTraspasadosNomina.htm
-        +├── Funciones_vul.h
-         ├── ModuloPrincipal.cpp
-         └── ...
-        ```
-
-    === ":simple-cplusplus: Código"
-
-        ```cpp hl_lines="2 7 9"
-        #define MAIN
-        #include "Funciones_vul.h"
+    int SN0047(char *cInput1,char *cInput2)
+    {
+        Funciones_vul vul;
         //...
-
-        int SN0047(char *cInput1,char *cInput2)
-        {
-            Funciones_vul vul;
-            //...
-            iOpcion = vul.caracentero(EstElpGralDllEnt1.opcion);
-            //...
-        }
-        ```
+        iOpcion = vul.caracentero(EstElpGralDllEnt1.opcion);
+        //...
+    }
+    ```

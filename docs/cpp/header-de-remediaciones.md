@@ -1,4 +1,26 @@
-[Descargar :material-download:](../assets/code/Funciones_vul.h){:download="Funciones_vul.h"}
+
+## ¿Cómo usarlo?
+
+1. [Descarga :material-download:](../assets/code/Funciones_vul.h){:download="Funciones_vul.h"} el archivo y cópialo en
+la raíz del proyecto
+
+    ```diff
+     sn0015/
+     ├── Clases/
+     │   ├── CSapConsultarCifrasDeControlPOSGRESQL01.cpp
+     │   ├── CSapConsultarCifrasDeControlPOSGRESQL01.hpp
+     │   └── ...
+     ├── DlgCompararCifrasQuincena.cpp
+     ├── DlgCompararCifrasQuincena.h
+    +├── Funciones_vul.h
+     ├── ggn.lib
+     ├── ModuloPrincipal.cpp
+     └── ...
+    ```
+
+2. Instancía la clase `Funciones_vul` y reemplaza la función afectada con la vulnerabilidad con su homólogo.
+
+## Código
 
 ```cpp
 #ifndef FUNCIONES_VUL_H
