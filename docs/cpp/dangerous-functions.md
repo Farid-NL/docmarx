@@ -8,11 +8,7 @@ Implementa una alternativa segura y recomendada para cualquier función que se h
 
 ## `strtok`
 
-La función `strtok` se considera insegura porque modifica una cadena y no es thread-safe.
-
-### `strtok_s`
-
-Sustituye `strtok` por `strtok_s` el cual requiere un parámetro `context` adicional para gestionar el estado entre
+Reemplaza `strtok` por `strtok_s` el cual requiere un parámetro `context` adicional para gestionar el estado entre
 llamadas.
 
 ???+ warning "Consideración en la versión de Visual C++"
@@ -63,3 +59,80 @@ llamadas.
     ```
 
     1. Incluye esta cabecera si es que no está ya incluida en el proyecto.
+
+## `memcpy`
+
+1. Crea un [header](../assets/code/Funciones_vul.h){:download="Funciones_vul.h" title="Descargar header"} en la raíz del
+   proyecto que contendrá [funciones homólogas a funciones con vulnerabilidades]. En este caso `memcpy`
+2. Incluye el header en el archivo afectado con la vulnerabilidad.
+3. Instancía la clase `Funciones_vul`
+4. Utiliza la instancia para reemplazar `memcpy` por `memorycopy`
+
+[funciones homólogas a funciones con vulnerabilidades]: header-de-remediaciones.md
+
+=== ":material-history: Original"
+
+    === ":material-file-tree: Estructura del proyecto"
+
+        ```
+        sn0015/
+        ├── Clases
+        │   ├── CSapConsultarCifrasDeControlPOSGRESQL01.cpp
+        │   ├── CSapConsultarCifrasDeControlPOSGRESQL01.hpp
+        │   ├── ...
+        ├── DlgCompararCifrasQuincena.cpp
+        ├── DlgCompararCifrasQuincena.h
+        ├── ggn.lib
+        ├── ModuloPrincipal.cpp
+        └── ...
+        ```
+
+    === ":simple-cplusplus: Código"
+
+        ```cpp
+        #define MAIN
+        //...
+
+        int SN0015( char *cInput1, char *cInput2 )
+        {
+            //...
+            memcpy( &parametroEntrada1, cInput1, sizeof( EstructurasElp ) );
+            memcpy( &parametroEntrada2, cInput2, sizeof( EstructurasElp ) );
+            //...
+        }
+        ```
+
+=== ":material-checkbox-marked-circle-outline: Solucionado"
+
+    === ":material-file-tree: Estructura del proyecto"
+
+        ```diff
+         sn0015/
+         ├── Clases
+         │   ├── CSapConsultarCifrasDeControlPOSGRESQL01.cpp
+         │   ├── CSapConsultarCifrasDeControlPOSGRESQL01.hpp
+         │   ├── ...
+         ├── DlgCompararCifrasQuincena.cpp
+         ├── DlgCompararCifrasQuincena.h
+        +├── Funciones_vul.h
+         ├── ggn.lib
+         ├── ModuloPrincipal.cpp
+         └── ...
+        ```
+
+    === ":simple-cplusplus: Código"
+
+        ```cpp hl_lines="2 7 9-10"
+        #define MAIN
+        #include "Funciones_vul.h"
+        //...
+
+        int SN0015( char *cInput1, char *cInput2 )
+        {
+            Funciones_vul vul;
+            //...
+            vul.memorycopy( &parametroEntrada1, cInput1, sizeof( EstructurasElp ) );
+            vul.memorycopy( &parametroEntrada2, cInput2, sizeof( EstructurasElp ) );
+            //...
+        }
+        ```
