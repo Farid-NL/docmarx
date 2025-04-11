@@ -135,3 +135,75 @@ llamadas.
             //...
         }
         ```
+
+## `sprintf`
+
+1. Crea un [header](../assets/code/Funciones_vul.h){:download="Funciones_vul.h" title="Descargar header"} en la raíz del
+   proyecto que contendrá [funciones homólogas a funciones con vulnerabilidades]. En este caso `sprintf`
+2. Instancía la clase `Funciones_vul` y reemplaza `sprintf` por ^^**`imprimirsprintf`**^^ en el archivo afectado con la
+   vulnerabilidad.
+
+[funciones homólogas a funciones con vulnerabilidades]: header-de-remediaciones.md
+
+=== ":material-history: Original"
+
+    === ":material-file-tree: Estructura del proyecto"
+
+        ```
+        sn0033/
+        ├── clases/
+        │   ├── CConsultaLiquidaciones.cpp
+        │   ├── CConsultaLiquidaciones.hpp
+        │   └── ...
+        ├── DlgConsultaliquidacionesvacacionesyoaguinaldo.cpp
+        ├── DlgConsultaliquidacionesvacacionesyoaguinaldo.h
+        ├── DlgGenerarliquidaciones.cpp
+        ├── ModuloPrincipal.cpp
+        └── ...
+        ```
+
+    === ":simple-cplusplus: Código"
+
+        ```cpp
+        //...
+
+        BOOL CDlgGenerarliquidaciones::OnInitDialog()
+        {
+            //...
+            sprintf(cTexto,"Error en "+ sqlTxt);
+            //...
+        }
+        ```
+
+=== ":material-checkbox-marked-circle-outline: Solucionado"
+
+    === ":material-file-tree: Estructura del proyecto"
+
+        ```diff
+         sn0033/
+         ├── clases/
+         │   ├── CConsultaLiquidaciones.cpp
+         │   ├── CConsultaLiquidaciones.hpp
+         │   └── ...
+         ├── DlgConsultaliquidacionesvacacionesyoaguinaldo.cpp
+         ├── DlgConsultaliquidacionesvacacionesyoaguinaldo.h
+         ├── DlgGenerarliquidaciones.cpp
+        +├── Funciones_vul.h
+         ├── ModuloPrincipal.cpp
+         └── ...
+        ```
+
+    === ":simple-cplusplus: Código"
+
+        ```cpp hl_lines="1 6 8"
+        #include "Funciones_vul.h"
+        //...
+
+        BOOL CDlgGenerarliquidaciones::OnInitDialog()
+        {
+            Funciones_vul vul;
+            //...
+            vul.imprimirsprintf(cTexto,"Error en "+ sqlTxt);
+            //...
+        }
+        ```
