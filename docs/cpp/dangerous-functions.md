@@ -64,7 +64,7 @@ llamadas.
 
 1. Crea un [header](../assets/code/Funciones_vul.h){:download="Funciones_vul.h" title="Descargar header"} en la raíz del
    proyecto que contendrá [funciones homólogas a funciones con vulnerabilidades]. En este caso `memcpy`
-2. Instancía la clase `Funciones_vul` y reemplaza `memcpy` por `memorycopy` en el archivo afectado con la
+2. Instancía la clase `Funciones_vul` y reemplaza `memcpy` por ^^**`memorycopy`**^^ en el archivo afectado con la
    vulnerabilidad.
 
 [funciones homólogas a funciones con vulnerabilidades]: header-de-remediaciones.md

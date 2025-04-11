@@ -155,6 +155,7 @@ nav:
       - Unchecked Input for Loop Condition: php/unchecked-input-for-loop-condition.md
   - C++:
       - Dangerous Functions: cpp/dangerous-functions.md
+      - Memory Leak: cpp/memory-leak.md
       - Unchecked Return Value: cpp/unchecked-return-value.md
       - Use of Obsolete Functions: cpp/use-of-obsolete-functions.md
   - Javascript:
