@@ -207,3 +207,77 @@ llamadas.
             //...
         }
         ```
+
+## `atoi`
+
+1. Crea un [header](../assets/code/Funciones_vul.h){:download="Funciones_vul.h" title="Descargar header"} en la raíz del
+   proyecto que contendrá [funciones homólogas a funciones con vulnerabilidades]. En este caso `atoi`
+2. Instancía la clase `Funciones_vul` y reemplaza `atoi` por ^^**`caracentero`**^^ en el archivo afectado con la
+   vulnerabilidad.
+
+[funciones homólogas a funciones con vulnerabilidades]: header-de-remediaciones.md
+
+=== ":material-history: Original"
+
+    === ":material-file-tree: Estructura del proyecto"
+
+        ```
+        sn0047/
+        ├── Clases/
+        │   ├── CMovtosNominaEmpresa.cpp
+        │   ├── CMovtosNominaEmpresa.hpp
+        │   └── ...
+        ├── DlgMovimientosTraspasadosNomina.cpp
+        ├── DlgMovimientosTraspasadosNomina.h
+        ├── DlgMovimientosTraspasadosNomina.htm
+        ├── ModuloPrincipal.cpp
+        └── ...
+        ```
+
+    === ":simple-cplusplus: Código"
+
+        ```cpp
+        #define MAIN
+        //...
+
+        int SN0047(char *cInput1,char *cInput2)
+        {
+            //...
+            iOpcion = atoi(EstElpGralDllEnt1.opcion);
+            //...
+        }
+        ```
+
+=== ":material-checkbox-marked-circle-outline: Solucionado"
+
+    === ":material-file-tree: Estructura del proyecto"
+
+        ```diff
+         sn0047/
+         ├── Clases/
+         │   ├── CMovtosNominaEmpresa.cpp
+         │   ├── CMovtosNominaEmpresa.hpp
+         │   └── ...
+         ├── DlgMovimientosTraspasadosNomina.cpp
+         ├── DlgMovimientosTraspasadosNomina.h
+         ├── DlgMovimientosTraspasadosNomina.htm
+        +├── Funciones_vul.h
+         ├── ModuloPrincipal.cpp
+         └── ...
+        ```
+
+    === ":simple-cplusplus: Código"
+
+        ```cpp hl_lines="2 7 9"
+        #define MAIN
+        #include "Funciones_vul.h"
+        //...
+
+        int SN0047(char *cInput1,char *cInput2)
+        {
+            Funciones_vul vul;
+            //...
+            iOpcion = vul.caracentero(EstElpGralDllEnt1.opcion);
+            //...
+        }
+        ```
