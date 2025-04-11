@@ -159,6 +159,7 @@ nav:
       - Memory Leak: cpp/memory-leak.md
       - Unchecked Return Value: cpp/unchecked-return-value.md
       - Use of Obsolete Functions: cpp/use-of-obsolete-functions.md
+      - Use of Sizeof On a Pointer Type: cpp/use-of-sizeof-on-a-pointer-type.md
   - Javascript:
       - Client DOM Open Redirect: js/client-dom-open-redirect.md
       - Client DOM Stored XSS: js/client-dom-stored-xss.md
