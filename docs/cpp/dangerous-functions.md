@@ -182,3 +182,42 @@ llamadas.
         //...
     }
     ```
+
+## `strlen`
+
+1. Crea un [header](../assets/code/Funciones_vul.h){:download="Funciones_vul.h" title="Descargar header"} en la [raíz del
+   proyecto]{title="Ejemplo"} que contendrá funciones homólogas a funciones con vulnerabilidades. En este caso `strlen`
+2. Instancía la clase `Funciones_vul` y reemplaza `strlen` por ^^**`longuitudlen`**^^ en el archivo afectado con la
+   vulnerabilidad.
+
+[raíz del proyecto]: header-de-remediaciones.md/#como-usarlo
+
+=== ":material-history: Original"
+
+    ```cpp
+    //...
+
+
+    CargarDLL::CargarDLL( char *cDLLCompleteFileName, char *cProjectName, char *cLocalInput1, char *cLocalInput2 )
+    {
+
+        //...
+        int nDLLName = ( int ) strlen( cDLLCompleteFileName );
+        //...
+    }
+    ```
+
+=== ":material-checkbox-marked-circle-outline: Solucionado"
+
+    ```cpp hl_lines="2 6 8"
+    //...
+    #include "Funciones_vul.h"
+
+    CargarDLL::CargarDLL( char *cDLLCompleteFileName, char *cProjectName, char *cLocalInput1, char *cLocalInput2 )
+    {
+        Funciones_vul vul;
+        //...
+        int nDLLName = ( int ) vul.longuitudlen( cDLLCompleteFileName );
+        //...
+    }
+    ```
