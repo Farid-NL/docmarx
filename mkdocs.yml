@@ -51,7 +51,7 @@ theme:
         icon: material/brightness-4
         name: Cambiar a preferencia del sistema
   font:
-    text: Helvetica Neue
+    text: Nunito
     code: JetBrains Mono
   icon:
     tag:
