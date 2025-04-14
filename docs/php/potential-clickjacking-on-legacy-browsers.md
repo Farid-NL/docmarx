@@ -4,7 +4,10 @@ tags:
   - Baja
 ---
 
-Agrega el [fragmento de código](#__tabbed_1_2) arriba del todo del archivo, afuera de la etiqueta `<?php`.
+Agrega el [fragmento de código](#__tabbed_1_2) arriba del todo del archivo:
+
+Ya sea afuera de la etiqueta `<?php` o dentro de una etiqueta `#!html <script>` en donde inicie el contenido HTML.
+
 
 === ":material-history: Original"
 

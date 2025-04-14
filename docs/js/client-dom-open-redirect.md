@@ -10,7 +10,7 @@ Suele suceder porque Checkmarx detecta `.value` como un valor potencialmente con
 
 Evita usar `value` al generar una URL que será utilizada por `#!js window.location.href(...)` o `#!js window.open(...)`
 
-## Alternativa 1
+## :material-checkbox-intermediate: Alternativa 1
 
 !!! warning "Consideración"
     **Solo** usarlo si el valor del elemento HTML está predeterminado y no cambiará durante la ejecución del programa.
@@ -32,7 +32,7 @@ Reemplaza `value` por `getAttribute('value')`
 
 ---
 
-## Alternativa 2
+## :material-checkbox-intermediate: Alternativa 2
 
 !!! warning "Posiblemente genere errores"
     Al guardar el elemento HTML entero en vez de solo su valor, puede generar errores

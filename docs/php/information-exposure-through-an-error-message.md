@@ -11,8 +11,8 @@ Cambia el manejo de excepciones/errores usando `#!php error_log`.
     ```php
     } catch (Exception $ex) {
         $mensaje = "";
-        $mensaje = $ex->getMessage();
         $estado = -2;
+        $mensaje = $ex->getMessage();
     }
     ```
 

@@ -8,8 +8,6 @@ Sanitiza el valor correspondiente con ayuda de [DOM Purify](https://github.com/c
 
 En algunos casos, en los que solo es esté insertando texto plano, se puede utilizar `.text()`.
 
-## DOM Purify
-
 !!! note "Nota"
     En función del programa puede que sea necesario permitir ciertos atributos, etiquetas, etc.
 
