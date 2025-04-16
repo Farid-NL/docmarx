@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block announce %}
+  <!--
+  Si se agrega algo: `color: #00A67E`
+  Si se modifica algo: `color: #F5C518`
+  Si se elimina algo: `color: #E53935`
+  -->
+  <span class="twemoji" style="color: #00A67E">
+    {% include ".icons/material/update.svg" %}
+  </span>
+  <strong>Agrega</strong> <code>trim</code> a
+  <a href="/docmarx/js/client-jquery-deprecated-symbols/#trim">Client JQuery Deprecated Symbols</a>
+  de Javascript.
+
+  <em>(16 Abril, 2025)</em>
+{% endblock %}
