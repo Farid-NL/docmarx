@@ -69,3 +69,27 @@ Utiliza `JSON.parse` y asegúrate de adaptarlo correctamente.
     ```js hl_lines="1"
     var json = JSON.parse(respuesta);
     ```
+
+## `trim`
+
+Utiliza `trim` _(nativa de JS)_ y asegúrate de adaptarlo correctamente.
+
+=== ":material-history: Original"
+
+    ```js
+    var val = $("#txtcaracteristica").val();
+    var val = $.trim(val)
+    ```
+
+=== ":material-checkbox-marked-circle-outline: Solucionado"
+
+    ```js hl_lines="2"
+    var val = $("#txtcaracteristica").val();
+    var val = val.trim(); // (1)!
+    ```
+
+    1. Si Checkmarx sigue detectando la vulnerabilidad entonces utiliza `.trimStart()` y `.trimEnd()`
+       ```
+       var val = val.trimStart();
+       var val = val.trimEnd();
+       ```
