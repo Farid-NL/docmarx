@@ -5,6 +5,7 @@ description = "Documentación de vulnerabilidades mitigadas reportadas por Check
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "mkdocs-git-revision-date-localized-plugin>=1.4.5",
     "mkdocs-material>=9.5.49",
 ]
 

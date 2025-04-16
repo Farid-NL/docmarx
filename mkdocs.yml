@@ -73,6 +73,11 @@ theme:
 plugins:
   - tags
   - search
+  - git-revision-date-localized:
+      type: timeago
+      timezone: America/Mazatlan
+      enable_creation_date: true
+      enabled: !ENV [MKDOCS_PLUGIN_GIT_REVISION_DATE_ENABLED, True]
   #- typeset
   #- privacy
 
