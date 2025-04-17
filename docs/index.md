@@ -205,7 +205,7 @@ Las anotaciones de código pueden colocarse en cualquier lugar de un bloque de c
 para el lenguaje del bloque, por ejemplo, para JavaScript en `// ...` y `/* ... */`, para YAML en `# ...`, etc.
 
 ```` title="Anotoaciones en bloques de código"
-``` .c++
+``` c++
 #include <iostream> // (1)!
 
 int main(void) {
@@ -219,7 +219,7 @@ int main(void) {
 
 <div class="result" markdown>
 
-``` .c++
+``` c++
 #include <iostream> // (1)!
 
 int main(void) {
