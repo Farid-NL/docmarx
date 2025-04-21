@@ -14,6 +14,7 @@ repo_name: farid-nl/docmarx
 # Configuración
 theme:
   logo: assets/logo.png
+  favicon: assets/logo.png
   name: material
   language: es
   features:
